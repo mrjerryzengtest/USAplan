@@ -2,421 +2,167 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>USA Plan — 2026 夏季美國行</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>USA 2026 機票</title>
 <style>
-  :root {
-    --bg: #0b1120;
-    --card: #131c31;
-    --border: #1e2d4a;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --accent: #38bdf8;
-    --green: #22c55e;
-    --orange: #f59e0b;
-    --purple: #818cf8;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
-    padding: 1rem;
-    -webkit-text-size-adjust: 100%;
-  }
-  .container { max-width: 520px; margin: 0 auto; }
-
-  /* Header */
-  .header {
-    text-align: center;
-    padding: 1.5rem 0 1rem;
-  }
-  .header h1 {
-    font-size: 1.6rem;
-    background: linear-gradient(135deg, var(--accent), var(--purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .header .sub {
-    color: var(--muted);
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
-  }
-
-  /* Route map */
-  .route-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.75rem 0;
-    flex-wrap: wrap;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-  .route-bar .city { color: var(--text); font-size: 0.9rem; }
-  .route-bar .sep { color: var(--border); }
-
-  /* Segment */
-  .segment {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-  }
-  .seg-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-  .seg-badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .l1 .seg-badge { background: rgba(56,189,248,0.12); color: var(--accent); }
-  .l2 .seg-badge { background: rgba(129,140,248,0.12); color: var(--purple); }
-  .l3 .seg-badge { background: rgba(245,158,11,0.12); color: var(--orange); }
-  .l4 .seg-badge { background: rgba(34,197,94,0.12); color: var(--green); }
-  .seg-date { font-size: 0.75rem; color: var(--muted); }
-
-  .route-line {
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 0.3rem 0 0.7rem;
-    color: var(--text);
-  }
-  .route-line .arw { color: var(--muted); margin: 0 0.35rem; font-weight: 400; }
-
-  /* Flight cards */
-  .flights { display: flex; flex-direction: column; gap: 0.5rem; }
-
-  .flight {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 0.7rem;
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    border: 1px solid transparent;
-    flex-wrap: wrap;
-  }
-  .flight:hover { border-color: var(--border); }
-  .flight.best { background: rgba(34,197,94,0.04); border-color: rgba(34,197,94,0.15); }
-
-  .fl-info {
-    flex: 1;
-    min-width: 0;
-  }
-  .fl-top {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-  .fl-airline {
-    font-size: 0.82rem;
-    font-weight: 600;
-  }
-  .fl-flightno {
-    font-size: 0.65rem;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .fl-times {
-    font-size: 0.82rem;
-    color: var(--text);
-    margin-top: 0.15rem;
-  }
-  .fl-times .t-arrow { color: var(--muted); margin: 0 0.3rem; }
-  .fl-meta {
-    font-size: 0.68rem;
-    color: var(--muted);
-    margin-top: 0.1rem;
-  }
-
-  .fl-price {
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .fl-price .price {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .fl-price .price.best-price { color: var(--green); }
-  .fl-price .src {
-    font-size: 0.6rem;
-    color: var(--muted);
-  }
-
-  /* Leg 3 date groups */
-  .date-group {
-    margin-bottom: 0.3rem;
-  }
-  .date-label {
-    font-size: 0.7rem;
-    color: var(--orange);
-    font-weight: 600;
-    padding: 0.2rem 0 0.3rem;
-  }
-
-  /* Note */
-  .seg-note {
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  /* Summary */
-  .summary {
-    background: linear-gradient(135deg, #131c31, #0f172a);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 0.75rem;
-    margin-bottom: 1rem;
-  }
-  .summary h2 {
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-  .sum-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 0.82rem;
-  }
-  .sum-row .lbl { color: var(--muted); }
-  .sum-row .lbl.sc1 { color: var(--accent); font-weight: 600; }
-  .sum-row .lbl.sc2 { color: var(--purple); font-weight: 600; }
-  .sum-row .lbl.sc3 { color: var(--orange); font-weight: 600; }
-  .sum-row .lbl.sc4 { color: var(--green); font-weight: 600; }
-  .sum-total {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0 0;
-    font-size: 1rem;
-    font-weight: 700;
-  }
-  .sum-total .val { color: var(--green); }
-
-  .footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.65rem;
-    padding: 0.5rem 0 1.5rem;
-  }
-
-  /* Slightly wider on desktop */
-  @media (min-width: 600px) {
-    body { padding: 2rem; }
-    .container { max-width: 620px; }
-    .flight { padding: 0.7rem 0.9rem; }
-    .fl-price .price { font-size: 1rem; }
-  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#0f172a; color:#e2e8f0; padding:16px; min-height:100vh; }
+  h1 { font-size:20px; text-align:center; margin-bottom:6px; }
+  .sub { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:20px; }
+  
+  .leg { background:#1e293b; border-radius:12px; padding:16px; margin-bottom:14px; }
+  .leg-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .leg-title { font-size:15px; font-weight:700; }
+  .leg-badge { font-size:11px; padding:2px 8px; border-radius:10px; }
+  .badge-1 { background:#3b82f6; color:#fff; }
+  .badge-2 { background:#a855f7; color:#fff; }
+  .badge-3 { background:#f97316; color:#fff; }
+  
+  .card { background:#0f172a; border-radius:8px; padding:12px; margin-bottom:8px; border:1px solid #334155; }
+  .card.best { border:2px solid #22c55e; background:#0a2e1a; }
+  .card-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+  .airline { font-weight:700; font-size:15px; }
+  .flight-no { color:#94a3b8; font-size:12px; margin-left:4px; }
+  .times { font-size:14px; color:#cbd5e1; margin-top:4px; }
+  .meta { font-size:12px; color:#64748b; margin-top:2px; }
+  .price { font-weight:700; font-size:16px; text-align:right; }
+  .price-best { color:#22c55e; font-size:18px; }
+  .price-normal { color:#fbbf24; }
+  
+  .summary { background:#1e293b; border-radius:12px; padding:16px; margin-top:14px; border:2px solid #22c55e; }
+  .summary h2 { font-size:16px; color:#22c55e; margin-bottom:10px; }
+  .leg-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; }
+  .dot-1 { background:#3b82f6; }
+  .dot-2 { background:#a855f7; }
+  .dot-3 { background:#f97316; }
+  .summary-row { display:flex; justify-content:space-between; padding:6px 0; font-size:14px; border-bottom:1px solid #334155; }
+  .summary-row:last-child { border:none; }
+  .total { font-size:18px; font-weight:700; color:#22c55e; padding-top:8px; }
+  .arrival { color:#22c55e; font-weight:600; }
+  
+  .ts { text-align:center; color:#475569; font-size:11px; margin-top:16px; }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- Header -->
-  <div class="header">
-    <h1>🇺🇸 USA Plan 2026</h1>
-    <div class="sub">8/22 → 9/7 ｜ 票價新台幣 ｜ 1 USD = 31.55 TWD</div>
+<h1>✈️ USA 2026 來回機票</h1>
+<div class="sub">8/22 → 9/7 傍晚抵台 · Momondo 價格 · 1 USD = 31.55 TWD</div>
+
+<!-- ═══════════ LEG 1 ═══════════ -->
+<div class="leg">
+  <div class="leg-header">
+    <span class="leg-title">① TPE → LAX</span>
+    <span class="leg-badge badge-1">8/22 直飛</span>
   </div>
-
-  <!-- Route bar -->
-  <div class="route-bar">
-    <span class="city">TPE</span><span class="sep">→</span>
-    <span class="city">LAX</span><span class="sep">→</span>
-    <span class="city">ATL</span><span class="sep">→</span>
-    <span class="city">TPE</span>
+  
+  <div class="card best">
+    <div class="card-row">
+      <span class="airline">China Airlines <span class="flight-no">CI8</span></span>
+      <span class="price price-best">NT$17,857</span>
+    </div>
+    <div class="times">23:50 → 21:35</div>
+    <div class="meta">12h 45m</div>
   </div>
-
-  <!-- Leg 1 -->
-  <div class="segment l1">
-    <div class="seg-head">
-      <span class="seg-badge">第一段</span>
-      <span class="seg-date">出發 8/22（六）</span>
+  
+  <div class="card">
+    <div class="card-row">
+      <span class="airline">STARLUX <span class="flight-no">JX2</span></span>
+      <span class="price price-normal">NT$24,325</span>
     </div>
-    <div class="route-line">TPE <span class="arw">→</span> LAX</div>
-    <div class="flights">
-      <div class="flight best">
-        <div class="fl-info">
-          <div class="fl-top">
-            <span class="fl-airline">華航</span>
-            <span class="fl-flightno">CI8</span>
-            
-          </div>
-          <div class="fl-times">11:50 PM <span class="t-arrow">→</span> 9:35 PM</div>
-          <div class="fl-meta">12h 45m</div>
-        </div>
-        <div class="fl-price">
-          <div class="price best-price">NT$17,857</div>
-          <div class="src">Momondo</div>
-        </div>
-      </div>
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top">
-            <span class="fl-airline">STARLUX</span>
-            <span class="fl-flightno">JX2</span>
-            
-          </div>
-          <div class="fl-times">12:10 AM <span class="t-arrow">→</span> 9:45 PM</div>
-          <div class="fl-meta">12h 35m</div>
-        </div>
-        <div class="fl-price">
-          <div class="price">NT$23,757</div>
-          <div class="src">Momondo</div>
-        </div>
-      </div>
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top">
-            <span class="fl-airline">EVA Air</span>
-            <span class="fl-flightno">BR12</span>
-          </div>
-          <div class="fl-times">7:40 PM <span class="t-arrow">→</span> 5:15 PM</div>
-          <div class="fl-meta">12h 35m</div>
-        </div>
-        <div class="fl-price">
-          <div class="price">NT$25,903</div>
-          <div class="src">Momondo</div>
-        </div>
-      </div>
-    </div>
+    <div class="times">00:10 → 21:45</div>
+    <div class="meta">12h 35m</div>
   </div>
-
-  <!-- Leg 2 -->
-  <div class="segment l2">
-    <div class="seg-head">
-      <span class="seg-badge">第二段</span>
-      <span class="seg-date">出發 9/1（二）</span>
+  
+  <div class="card">
+    <div class="card-row">
+      <span class="airline">EVA Air <span class="flight-no">BR12</span></span>
+      <span class="price price-normal">NT$25,903</span>
     </div>
-    <div class="route-line">LAX <span class="arw">→</span> ATL</div>
-    <div class="flights">
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top">
-            <span class="fl-airline">JetBlue</span>
-            
-          </div>
-          <div class="fl-times">12:00 AM <span class="t-arrow">→</span> 7:30 AM</div>
-          <div class="fl-meta">4h 30m</div>
-        </div>
-        <div class="fl-price">
-          <div class="price best-price">NT$8,077</div>
-          <div class="src">Momondo</div>
-        </div>
-      </div>
-      <div class="flight best">
-        <div class="fl-info">
-          <div class="fl-top">
-            <span class="fl-airline">Delta</span>
-            <span class="fl-flightno">DL528</span>
-            
-          </div>
-          <div class="fl-times">11:08 AM <span class="t-arrow">→</span> 6:45 PM</div>
-          <div class="fl-meta">4h 37m</div>
-        </div>
-        <div class="fl-price">
-          <div class="price">NT$10,064</div>
-          <div class="src">Momondo</div>
-        </div>
-      </div>
-    </div>
+    <div class="times">19:40 → 17:15</div>
+    <div class="meta">12h 35m</div>
   </div>
-
-  <!-- Leg 3: ATL → TPE (合併搜尋) -->
-  <div class="segment l3">
-    <div class="seg-head">
-      <span class="seg-badge">第三段</span>
-      <span class="seg-date">出發 9/6（日）</span>
-    </div>
-    <div class="route-line">ATL <span class="arw">→</span> TPE</div>
-    <div class="flights">
-      <div class="flight best">
-        <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Alaska + EVA</span></div>
-          <div class="fl-times">7:03 AM <span class="t-arrow">→</span> 9:25 PM<span style="font-size:0.65rem;color:var(--muted)">+1</span></div>
-          <div class="fl-meta">26h 22m · 2 次轉機（SEA/ICN）</div>
-        </div>
-        <div class="fl-price"><div class="price">NT$14,671</div><div class="src">Momondo</div></div>
-      </div>
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Japan Airlines</span></div>
-          <div class="fl-times">8:45 AM <span class="t-arrow">→</span> 6:46 PM<span style="font-size:0.65rem;color:var(--muted)">+1</span></div>
-          <div class="fl-meta">22h 01m · 2 次轉機（DEN/SFO）</div>
-        </div>
-        <div class="fl-price"><div class="price">NT$16,942</div><div class="src">Momondo</div></div>
-      </div>
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Japan Airlines</span></div>
-          <div class="fl-times">7:03 AM <span class="t-arrow">→</span> 6:40 PM<span style="font-size:0.65rem;color:var(--muted)">+1</span></div>
-          <div class="fl-meta">23h 37m · 1 次轉機（SFO）</div>
-        </div>
-        <div class="fl-price"><div class="price">NT$16,942</div><div class="src">Momondo</div></div>
-      </div>
-      <div class="flight">
-        <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Japan Airlines</span></div>
-          <div class="fl-times">4:31 PM <span class="t-arrow">→</span> 4:06 AM<span style="font-size:0.65rem;color:var(--muted)">+2</span></div>
-          <div class="fl-meta">23h 35m · 2 次轉機（DEN/SFO）</div>
-        </div>
-        <div class="fl-price"><div class="price best-price">NT$16,942</div><div class="src">Momondo</div></div>
-      </div>
-    </div>
-    <div class="seg-note">🛬 +1 = 9/7 抵達（傍晚/晚上）。+2 = 9/8 清晨。Alaska+EVA 最便宜但轉 2 次。</div>
-  </div>
-
-  <!-- Summary -->
-  <div class="summary">
-    <h2>💰 推薦組合</h2>
-    <div class="sum-row">
-      <span class="lbl sc1">TPE→LAX</span>
-      <span>出發 8/22</span>
-      <span>華航 CI8 — NT$17,857</span>
-    </div>
-    <div class="sum-row">
-      <span class="lbl sc2">LAX→ATL</span>
-      <span>出發 9/1</span>
-      <span>Delta DL528 — NT$10,064</span>
-    </div>
-    <div class="sum-row">
-      <span class="lbl sc3">ATL→TPE</span>
-      <span>出發 9/6</span>
-      <span>JAL 7:03AM — NT$16,942</span>
-    </div>
-    <div class="sum-total">
-      <span>合計</span>
-      <span class="val">NT$44,863</span>
-    </div>
-  </div>
-
-  <div class="footer">
-    資料擷取：2026-06-20 19:41 (UTC+8) ｜ 匯率 1 USD = 31.55 TWD<br>
-    來源：Momondo / Google Flights
-  </div>
-
 </div>
+
+<!-- ═══════════ LEG 2 ═══════════ -->
+<div class="leg">
+  <div class="leg-header">
+    <span class="leg-title">② LAX → ATL</span>
+    <span class="leg-badge badge-2">9/1 直飛</span>
+  </div>
+  
+  <div class="card best">
+    <div class="card-row">
+      <span class="airline">Delta</span>
+      <span class="price price-best">NT$8,487</span>
+    </div>
+    <div class="times">23:59 → 9/2 07:29</div>
+    <div class="meta">4h 30m · 紅眼</div>
+  </div>
+  
+  <div class="card">
+    <div class="card-row">
+      <span class="airline">Delta</span>
+      <span class="price price-normal">NT$8,487</span>
+    </div>
+    <div class="times">22:40 → 9/2 06:10</div>
+    <div class="meta">4h 30m</div>
+  </div>
+  
+  <div class="card">
+    <div class="card-row">
+      <span class="airline">Delta <span class="flight-no">DL528</span></span>
+      <span class="price price-normal">NT$10,064</span>
+    </div>
+    <div class="times">09:50 → 17:05</div>
+    <div class="meta">4h 15m</div>
+  </div>
+</div>
+
+<!-- ═══════════ LEG 3 ═══════════ -->
+<div class="leg">
+  <div class="leg-header">
+    <span class="leg-title">③ ATL → TPE</span>
+    <span class="leg-badge badge-3">9/6 · 1 次轉機</span>
+  </div>
+  
+  <div class="card best">
+    <div class="card-row">
+      <span class="airline">United Airlines</span>
+      <span class="price price-best">NT$17,258</span>
+    </div>
+    <div class="times">07:00 → <span class="arrival">9/7 18:45</span></div>
+    <div class="meta">23h 45m · 1 次轉機</div>
+  </div>
+</div>
+
+<!-- ═══════════ 推薦組合 ═══════════ -->
+<div class="summary">
+  <h2>🏆 推薦組合</h2>
+  <div class="summary-row">
+    <span><span class="leg-dot dot-1"></span>TPE→LAX 8/22</span>
+    <span>華航 CI8 · NT$17,857</span>
+  </div>
+  <div class="summary-row">
+    <span><span class="leg-dot dot-2"></span>LAX→ATL 9/1</span>
+    <span>Delta · NT$8,487</span>
+  </div>
+  <div class="summary-row">
+    <span><span class="leg-dot dot-3"></span>ATL→TPE 9/6</span>
+    <span>United · NT$17,258</span>
+  </div>
+  <div class="summary-row total">
+    <span>合計</span>
+    <span>NT$43,602</span>
+  </div>
+  <div style="font-size:12px; color:#64748b; margin-top:6px; text-align:center;">
+    United ATL→TPE 9/6 07:00 出發 → 9/7 18:45 抵達台北 ✅
+  </div>
+</div>
+
+<div class="ts" id="ts">updated: ...</div>
+
+<script>
+document.getElementById('ts').textContent = 'updated: ' + new Date().toLocaleString('zh-TW', {timeZone:'Asia/Taipei'}) + ' TW';
+</script>
 </body>
 </html>

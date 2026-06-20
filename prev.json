@@ -1,0 +1,130 @@
+{
+  "timestamp": "2026-06-20T20:11:38.987717",
+  "rate": "1 USD = 31.55 TWD",
+  "leg1": {
+    "route": "TPE→LAX",
+    "date": "2026-08-22",
+    "flights": [
+      {
+        "airline": "China Airlines",
+        "depart": "11:50 PM",
+        "arrive": "9:35 PM",
+        "duration": "12h 45m",
+        "stops": "Nonstop",
+        "price_twd": 17857,
+        "source": "Momondo"
+      },
+      {
+        "airline": "STARLUX Airlines",
+        "depart": "12:10 AM",
+        "arrive": "9:45 PM",
+        "duration": "12h 35m",
+        "stops": "Nonstop",
+        "price_twd": 24325,
+        "source": "Momondo"
+      },
+      {
+        "airline": "EVA Air",
+        "depart": "7:40 PM",
+        "arrive": "5:15 PM",
+        "duration": "12h 35m",
+        "stops": "Nonstop",
+        "price_twd": 25903,
+        "source": "Momondo"
+      },
+      {
+        "airline": "EVA Air",
+        "depart": "11:55 PM",
+        "arrive": "9:30 PM",
+        "duration": "12h 35m",
+        "stops": "Nonstop",
+        "price_twd": 25903,
+        "source": "Momondo"
+      },
+      {
+        "airline": "EVA Air",
+        "depart": "10:10 AM",
+        "arrive": "7:50 AM",
+        "duration": "12h 40m",
+        "stops": "Nonstop",
+        "price_twd": 25903,
+        "source": "Momondo"
+      }
+    ]
+  },
+  "leg2": {
+    "route": "LAX→ATL",
+    "date": "2026-09-01",
+    "flights": [
+      {
+        "airline": "Delta",
+        "depart": "11:59 PM",
+        "arrive": "7:29 AM+1",
+        "duration": "4h 30m",
+        "stops": "Nonstop",
+        "price_twd": 8487,
+        "source": "Momondo"
+      },
+      {
+        "airline": "Delta",
+        "depart": "10:40 PM",
+        "arrive": "6:10 AM+1",
+        "duration": "4h 30m",
+        "stops": "Nonstop",
+        "price_twd": 8487,
+        "source": "Momondo"
+      },
+      {
+        "airline": "Delta",
+        "depart": "9:30 PM",
+        "arrive": "5:04 AM+1",
+        "duration": "4h 34m",
+        "stops": "Nonstop",
+        "price_twd": 8487,
+        "source": "Momondo"
+      },
+      {
+        "airline": "Delta",
+        "depart": "2:00 PM",
+        "arrive": "9:40 PM",
+        "duration": "4h 40m",
+        "stops": "Nonstop",
+        "price_twd": 8487,
+        "source": "Momondo"
+      },
+      {
+        "airline": "Delta",
+        "depart": "9:50 AM",
+        "arrive": "5:05 PM",
+        "duration": "4h 15m",
+        "stops": "Nonstop",
+        "price_twd": 10064,
+        "source": "Momondo"
+      },
+      {
+        "airline": "Delta",
+        "depart": "7:00 AM",
+        "arrive": "2:35 PM",
+        "duration": "4h 35m",
+        "stops": "Nonstop",
+        "price_twd": 10064,
+        "source": "Momondo"
+      }
+    ]
+  },
+  "leg3": {
+    "route": "ATL→TPE",
+    "date": "2026-09-06",
+    "flights": [
+      {
+        "airline": "United Airlines",
+        "depart": "7:00 AM",
+        "arrive": "6:45 PM+1",
+        "duration": "23h 45m",
+        "stops": "1 stop",
+        "price_twd": 17258,
+        "source": "Momondo"
+      }
+    ]
+  }
+}
