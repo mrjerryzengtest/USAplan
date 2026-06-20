@@ -132,14 +132,6 @@
     color: var(--accent);
     font-weight: 600;
   }
-  .fl-nonstop {
-    font-size: 0.6rem;
-    padding: 1px 5px;
-    border-radius: 3px;
-    background: rgba(34,197,94,0.1);
-    color: var(--green);
-    font-weight: 500;
-  }
   .fl-times {
     font-size: 0.82rem;
     color: var(--text);
@@ -211,6 +203,10 @@
     font-size: 0.82rem;
   }
   .sum-row .lbl { color: var(--muted); }
+  .sum-row .lbl.sc1 { color: var(--accent); font-weight: 600; }
+  .sum-row .lbl.sc2 { color: var(--purple); font-weight: 600; }
+  .sum-row .lbl.sc3 { color: var(--orange); font-weight: 600; }
+  .sum-row .lbl.sc4 { color: var(--green); font-weight: 600; }
   .sum-total {
     display: flex;
     justify-content: space-between;
@@ -267,7 +263,7 @@
           <div class="fl-top">
             <span class="fl-airline">華航</span>
             <span class="fl-flightno">CI8</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">11:50 PM <span class="t-arrow">→</span> 9:35 PM</div>
           <div class="fl-meta">12h 45m</div>
@@ -282,7 +278,7 @@
           <div class="fl-top">
             <span class="fl-airline">STARLUX</span>
             <span class="fl-flightno">JX2</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">12:10 AM <span class="t-arrow">→</span> 9:45 PM</div>
           <div class="fl-meta">12h 35m</div>
@@ -296,7 +292,7 @@
         <div class="fl-info">
           <div class="fl-top">
             <span class="fl-airline">EVA Air</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">7:40 PM <span class="t-arrow">→</span> 5:15 PM</div>
           <div class="fl-meta">12h 35m</div>
@@ -321,7 +317,7 @@
         <div class="fl-info">
           <div class="fl-top">
             <span class="fl-airline">JetBlue</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">12:00 AM <span class="t-arrow">→</span> 7:30 AM</div>
           <div class="fl-meta">4h 30m</div>
@@ -336,7 +332,7 @@
           <div class="fl-top">
             <span class="fl-airline">Delta</span>
             <span class="fl-flightno">DL528</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">11:08 AM <span class="t-arrow">→</span> 6:45 PM</div>
           <div class="fl-meta">4h 37m</div>
@@ -359,7 +355,7 @@
     <div class="flights">
       <div class="flight best">
         <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Delta</span><span class="fl-nonstop">直飛</span></div>
+          <div class="fl-top"><span class="fl-airline">Delta</span></div>
           <div class="fl-times">7:35 AM <span class="t-arrow">→</span> 9:49 AM</div>
           <div class="fl-meta">5h 14m</div>
         </div>
@@ -367,7 +363,7 @@
       </div>
       <div class="flight best">
         <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Delta</span><span class="fl-nonstop">直飛</span></div>
+          <div class="fl-top"><span class="fl-airline">Delta</span></div>
           <div class="fl-times">9:35 PM <span class="t-arrow">→</span> 11:57 PM</div>
           <div class="fl-meta">5h 22m</div>
         </div>
@@ -375,7 +371,7 @@
       </div>
       <div class="flight">
         <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Delta</span><span class="fl-nonstop">直飛</span></div>
+          <div class="fl-top"><span class="fl-airline">Delta</span></div>
           <div class="fl-times">1:45 PM <span class="t-arrow">→</span> 4:00 PM</div>
           <div class="fl-meta">5h 15m</div>
         </div>
@@ -383,7 +379,7 @@
       </div>
       <div class="flight">
         <div class="fl-info">
-          <div class="fl-top"><span class="fl-airline">Delta</span><span class="fl-nonstop">直飛</span></div>
+          <div class="fl-top"><span class="fl-airline">Delta</span></div>
           <div class="fl-times">4:45 PM <span class="t-arrow">→</span> 7:05 PM</div>
           <div class="fl-meta">5h 20m</div>
         </div>
@@ -405,7 +401,7 @@
         <div class="fl-info">
           <div class="fl-top">
             <span class="fl-airline">Delta</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">4:00 PM <span class="t-arrow">→</span> 7:55 PM<span style="font-size:0.65rem;color:var(--muted)">+1</span></div>
           <div class="fl-meta">12h 55m</div>
@@ -419,7 +415,7 @@
         <div class="fl-info">
           <div class="fl-top">
             <span class="fl-airline">EVA Air</span>
-            <span class="fl-nonstop">直飛</span>
+            
           </div>
           <div class="fl-times">1:30 AM <span class="t-arrow">→</span> 5:00 AM<span style="font-size:0.65rem;color:var(--muted)">+1</span></div>
           <div class="fl-meta">12h 30m</div>
@@ -437,24 +433,24 @@
   <div class="summary">
     <h2>💰 推薦組合</h2>
     <div class="sum-row">
-      <span class="lbl">TPE→LAX</span>
+      <span class="lbl sc1">TPE→LAX</span>
       <span>出發 8/22</span>
       <span>華航 CI8 — NT$17,857</span>
     </div>
     <div class="sum-row">
-      <span class="lbl">LAX→ATL</span>
+      <span class="lbl sc2">LAX→ATL</span>
       <span>出發 9/1</span>
       <span>Delta DL528 — NT$10,064</span>
     </div>
     <div class="sum-row">
-      <span class="lbl">ATL→SEA</span>
+      <span class="lbl sc3">ATL→SEA</span>
       <span>出發 9/5</span>
       <span>Delta 9:35PM — NT$8,171</span>
     </div>
     <div class="sum-row">
-      <span class="lbl">SEA→TPE</span>
+      <span class="lbl sc4">SEA→TPE</span>
       <span>出發 9/6</span>
-      <span>Delta 直飛 — NT$14,134</span>
+      <span>Delta — NT$14,134</span>
     </div>
     <div class="sum-total">
       <span>合計</span>
