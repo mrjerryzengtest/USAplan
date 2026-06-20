@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Plan — 2026 夏季美國行</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --green: #22c55e;
+    --orange: #f59e0b;
+    --red: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+  
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .segment {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .segment::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+  .segment.leg1::before { background: var(--accent); }
+  .segment.leg2::before { background: #818cf8; }
+  .segment.leg3::before { background: var(--orange); }
+  .segment.leg4::before { background: var(--green); }
+  
+  .leg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .leg-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .leg1 .leg-tag { background: rgba(56,189,248,0.15); color: var(--accent); }
+  .leg2 .leg-tag { background: rgba(129,140,248,0.15); color: #818cf8; }
+  .leg3 .leg-tag { background: rgba(245,158,11,0.15); color: var(--orange); }
+  .leg4 .leg-tag { background: rgba(34,197,94,0.15); color: var(--green); }
+  
+  .leg-date { font-size: 0.85rem; color: var(--muted); }
+  
+  .route {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+  .route .arrow { color: var(--muted); margin: 0 0.5rem; }
+  
+  .flight-table {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  .flight-table th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.5rem;
+  }
+  .flight-table td {
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-table tr:last-child td { border-bottom: none; }
+  
+  .best { color: var(--green); font-weight: 600; }
+  .airline-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.06);
+  }
+  .nonstop {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    background: rgba(34,197,94,0.12);
+    color: var(--green);
+  }
+  
+  .summary-card {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .summary-card h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .total-row:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--green);
+  }
+  .total-row .label { color: var(--muted); }
+  
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .route { font-size: 1.1rem; }
+    .flight-table { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🇺🇸 USA Plan 2026</h1>
+  <p class="subtitle">8/22 – 9/7 ｜ TPE → LAX → ATL → SEA → TPE ｜ 票價單位：新台幣</p>
+
+  <div class="timeline">
+
+    <!-- Leg 1: TPE → LAX -->
+    <div class="segment leg1">
+      <div class="leg-header">
+        <span class="leg-tag">第一段</span>
+        <span class="leg-date">2026.08.22（六）</span>
+      </div>
+      <div class="route">TPE <span class="arrow">→</span> LAX</div>
+      <table class="flight-table">
+        <thead><tr><th>航空公司</th><th>出發</th><th>抵達</th><th>飛行時間</th><th>票價</th><th>來源</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="airline-badge">EVA Air</span></td>
+            <td>7:40 PM</td><td>5:15 PM</td><td>12h 35m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$23,757</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">STARLUX ★JX2</span></td>
+            <td>12:10 AM</td><td>9:45 PM</td><td>12h 35m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$23,757</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">EVA Air</span></td>
+            <td>11:55 PM</td><td>9:30 PM</td><td>12h 35m <span class="nonstop">直飛</span></td>
+            <td>NT$25,619</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">華航</span></td>
+            <td>11:50 PM</td><td>9:35 PM</td><td>12h 45m <span class="nonstop">直飛</span></td>
+            <td>NT$26,628</td><td>Google</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Leg 2: LAX → ATL -->
+    <div class="segment leg2">
+      <div class="leg-header">
+        <span class="leg-tag">第二段</span>
+        <span class="leg-date">2026.09.01（二）</span>
+      </div>
+      <div class="route">LAX <span class="arrow">→</span> ATL</div>
+      <table class="flight-table">
+        <thead><tr><th>航空公司</th><th>出發</th><th>抵達</th><th>飛行時間</th><th>票價</th><th>來源</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="airline-badge">JetBlue</span></td>
+            <td>12:00 AM</td><td>7:30 AM</td><td>4h 30m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$8,077</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">Delta ★DL528</span></td>
+            <td>9:30 PM</td><td>5:04 AM+1</td><td>4h 34m <span class="nonstop">直飛</span></td>
+            <td>NT$8,361</td><td>Google</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">Delta ★DL528</span></td>
+            <td>11:08 AM</td><td>6:45 PM</td><td>4h 37m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$10,064</td><td>Momondo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Leg 3: ATL → SEA -->
+    <div class="segment leg3">
+      <div class="leg-header">
+        <span class="leg-tag">第三段</span>
+        <span class="leg-date">2026.09.02–05（彈性）</span>
+      </div>
+      <div class="route">ATL <span class="arrow">→</span> SEA</div>
+      <table class="flight-table">
+        <thead><tr><th>日期</th><th>航空公司</th><th>出發</th><th>抵達</th><th>飛行時間</th><th>票價</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>9/2</td>
+            <td><span class="airline-badge">JetBlue</span></td>
+            <td>9:33 PM</td><td>11:55 PM</td><td>5h 22m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$6,247</td>
+          </tr>
+          <tr>
+            <td>9/2</td>
+            <td><span class="airline-badge">Delta</span></td>
+            <td>7:35 AM</td><td>9:49 AM</td><td>5h 14m <span class="nonstop">直飛</span></td>
+            <td>NT$8,171</td>
+          </tr>
+          <tr>
+            <td>9/3</td>
+            <td><span class="airline-badge">Delta</span></td>
+            <td>9:35 PM</td><td>11:57 PM</td><td>5h 22m <span class="nonstop">直飛</span></td>
+            <td>NT$8,802</td>
+          </tr>
+          <tr>
+            <td>9/4</td>
+            <td><span class="airline-badge">JetBlue</span></td>
+            <td>9:39 PM</td><td>12:01 AM+1</td><td>5h 22m <span class="nonstop">直飛</span></td>
+            <td>NT$7,351</td>
+          </tr>
+          <tr>
+            <td>9/5</td>
+            <td><span class="airline-badge">Delta</span></td>
+            <td>7:35 AM</td><td>9:49 AM</td><td>5h 14m <span class="nonstop">直飛</span></td>
+            <td>NT$8,171</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--muted);">⚠️ 需在 9/6 16:00 前抵達 SEA，接下一段。9/5 最晚仍可銜接。</p>
+    </div>
+
+    <!-- Leg 4: SEA → TPE -->
+    <div class="segment leg4">
+      <div class="leg-header">
+        <span class="leg-tag">第四段</span>
+        <span class="leg-date">2026.09.06（日）</span>
+      </div>
+      <div class="route">SEA <span class="arrow">→</span> TPE</div>
+      <table class="flight-table">
+        <thead><tr><th>航空公司</th><th>出發</th><th>抵達</th><th>飛行時間</th><th>票價</th><th>來源</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="airline-badge">Delta</span></td>
+            <td>4:00 PM</td><td>7:55 PM+1</td><td>12h 55m <span class="nonstop">直飛</span></td>
+            <td class="best">NT$14,134</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">EVA Air</span></td>
+            <td>1:30 AM</td><td>5:00 AM+1</td><td>12h 30m <span class="nonstop">直飛</span></td>
+            <td>NT$15,396</td><td>Momondo</td>
+          </tr>
+          <tr>
+            <td><span class="airline-badge">EVA Air</span></td>
+            <td>12:30 AM</td><td>4:00 AM+1</td><td>12h 40m <span class="nonstop">直飛</span></td>
+            <td>NT$15,933</td><td>Momondo</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--muted);">🕐 +1 表示次日抵達。Delta 9/7 晚上 7:55 到台灣 ✅</p>
+    </div>
+
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>💰 推薦組合（最便宜）</h2>
+    <div class="total-row"><span class="label">TPE→LAX 8/22</span><span>EVA Air / JX2 — NT$23,757</span></div>
+    <div class="total-row"><span class="label">LAX→ATL 9/1</span><span>Delta DL528 — NT$10,064</span></div>
+    <div class="total-row"><span class="label">ATL→SEA 9/2</span><span>JetBlue — NT$6,247</span></div>
+    <div class="total-row"><span class="label">SEA→TPE 9/6</span><span>Delta 直飛 — NT$14,134</span></div>
+    <div class="total-row"><span class="label">合計</span><span>NT$54,202</span></div>
+  </div>
+
+  <p class="footer">資料擷取時間：2026-06-20 ｜ 匯率：1 USD = 31.55 TWD ｜ 來源：Momondo / Google Flights</p>
+</div>
+</body>
+</html>
