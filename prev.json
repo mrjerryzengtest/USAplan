@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T20:11:38.987717",
+  "timestamp": "2026-06-20T21:16:02.970001",
   "rate": "1 USD = 31.55 TWD",
   "leg1": {
     "route": "TPE→LAX",
@@ -20,7 +20,7 @@
         "arrive": "9:45 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 24325,
+        "price_twd": 23757,
         "source": "Momondo"
       },
       {
@@ -29,7 +29,7 @@
         "arrive": "5:15 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -38,7 +38,7 @@
         "arrive": "9:30 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -47,7 +47,7 @@
         "arrive": "7:50 AM",
         "duration": "12h 40m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       }
     ]
@@ -57,12 +57,39 @@
     "date": "2026-09-01",
     "flights": [
       {
-        "airline": "Delta DL528",
-        "depart": "9:50 AM",
-        "arrive": "5:05 PM",
-        "duration": "4h 15m",
+        "airline": "JetBlue",
+        "depart": "12:03 AM",
+        "arrive": "7:33 AM",
+        "duration": "4h 30m",
         "stops": "Nonstop",
-        "price_twd": 10064,
+        "price_twd": 8077,
+        "source": "Momondo"
+      },
+      {
+        "airline": "JetBlue",
+        "depart": "10:42 PM",
+        "arrive": "6:12 AM+1",
+        "duration": "4h 30m",
+        "stops": "Nonstop",
+        "price_twd": 8077,
+        "source": "Momondo"
+      },
+      {
+        "airline": "JetBlue",
+        "depart": "9:28 PM",
+        "arrive": "5:02 AM+1",
+        "duration": "4h 34m",
+        "stops": "Nonstop",
+        "price_twd": 8077,
+        "source": "Momondo"
+      },
+      {
+        "airline": "JetBlue",
+        "depart": "2:01 PM",
+        "arrive": "9:41 PM",
+        "duration": "4h 40m",
+        "stops": "Nonstop",
+        "price_twd": 8077,
         "source": "Momondo"
       },
       {
@@ -81,33 +108,6 @@
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8487,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "9:30 PM",
-        "arrive": "5:04 AM+1",
-        "duration": "4h 34m",
-        "stops": "Nonstop",
-        "price_twd": 8487,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "2:00 PM",
-        "arrive": "9:40 PM",
-        "duration": "4h 40m",
-        "stops": "Nonstop",
-        "price_twd": 8487,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "7:00 AM",
-        "arrive": "2:35 PM",
-        "duration": "4h 35m",
-        "stops": "Nonstop",
-        "price_twd": 10064,
         "source": "Momondo"
       }
     ]
