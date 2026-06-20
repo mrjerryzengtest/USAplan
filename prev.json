@@ -57,6 +57,15 @@
     "date": "2026-09-01",
     "flights": [
       {
+        "airline": "Delta DL528",
+        "depart": "9:50 AM",
+        "arrive": "5:05 PM",
+        "duration": "4h 15m",
+        "stops": "Nonstop",
+        "price_twd": 10064,
+        "source": "Momondo"
+      },
+      {
         "airline": "Delta",
         "depart": "11:59 PM",
         "arrive": "7:29 AM+1",
@@ -90,15 +99,6 @@
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8487,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "9:50 AM",
-        "arrive": "5:05 PM",
-        "duration": "4h 15m",
-        "stops": "Nonstop",
-        "price_twd": 10064,
         "source": "Momondo"
       },
       {
