@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T05:31:15.304555",
+  "timestamp": "2026-06-21T06:33:06.791867",
   "rate": "1 USD = 31.55 TWD",
   "leg1": {
     "route": "TPE→LAX",
@@ -29,7 +29,7 @@
         "arrive": "5:15 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -38,7 +38,7 @@
         "arrive": "9:30 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -47,7 +47,7 @@
         "arrive": "7:50 AM",
         "duration": "12h 40m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       }
     ]
@@ -58,29 +58,29 @@
     "flights": [
       {
         "airline": "JetBlue",
-        "depart": "10:39 PM",
-        "arrive": "6:09 AM+1",
+        "depart": "11:57 PM",
+        "arrive": "7:27 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
-        "price_twd": 8077,
+        "price_twd": 8140,
         "source": "Momondo"
       },
       {
         "airline": "JetBlue",
-        "depart": "12:03 AM",
-        "arrive": "7:33 AM",
+        "depart": "10:44 PM",
+        "arrive": "6:14 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
-        "price_twd": 8077,
+        "price_twd": 8140,
         "source": "Momondo"
       },
       {
         "airline": "JetBlue",
-        "depart": "9:35 PM",
-        "arrive": "5:09 AM+1",
+        "depart": "9:32 PM",
+        "arrive": "5:06 AM+1",
         "duration": "4h 34m",
         "stops": "Nonstop",
-        "price_twd": 8077,
+        "price_twd": 8140,
         "source": "Momondo"
       },
       {
@@ -89,7 +89,7 @@
         "arrive": "9:35 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
-        "price_twd": 8077,
+        "price_twd": 8140,
         "source": "Momondo"
       },
       {
@@ -123,42 +123,6 @@
         "duration": "23h 45m",
         "stops": "1 stop",
         "price_twd": 17258,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "12:29 PM",
-        "arrive": "7:55 PM+1",
-        "duration": "19h 26m",
-        "stops": "1 stop",
-        "price_twd": 19309,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Delta",
-        "depart": "7:35 AM",
-        "arrive": "7:55 PM+1",
-        "duration": "24h 20m",
-        "stops": "1 stop",
-        "price_twd": 19466,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Korean Air, Asiana Airlines",
-        "depart": "11:30 PM",
-        "arrive": "10:25 AM+2",
-        "duration": "22h 55m",
-        "stops": "1 stop",
-        "price_twd": 22243,
-        "source": "Momondo"
-      },
-      {
-        "airline": "Southwest, China Airlines",
-        "depart": "5:35 PM",
-        "arrive": "5:10 AM+2",
-        "duration": "23h 35m",
-        "stops": "1 stop",
-        "price_twd": 22337,
         "source": "Momondo"
       }
     ]
