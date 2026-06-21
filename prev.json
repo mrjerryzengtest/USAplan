@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21 08:51 TW",
+  "timestamp": "2026-06-21 09:49 TW",
   "rate": "1 USD = 31.55 TWD",
   "sources": [
     "Momondo",
@@ -34,16 +34,7 @@
         "arrive": "9:45 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 23757,
-        "source": "Momondo"
-      },
-      {
-        "airline": "EVA Air",
-        "depart": "7:40 PM",
-        "arrive": "5:15 PM",
-        "duration": "12h 35m",
-        "stops": "Nonstop",
-        "price_twd": 25619,
+        "price_twd": 23662,
         "source": "Momondo"
       },
       {
@@ -52,7 +43,7 @@
         "arrive": "9:30 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25619,
+        "price_twd": 25240,
         "source": "Momondo"
       },
       {
@@ -61,7 +52,16 @@
         "arrive": "7:50 AM",
         "duration": "12h 40m",
         "stops": "Nonstop",
-        "price_twd": 25619,
+        "price_twd": 25240,
+        "source": "Momondo"
+      },
+      {
+        "airline": "EVA Air",
+        "depart": "7:40 PM",
+        "arrive": "5:15 PM",
+        "duration": "12h 35m",
+        "stops": "Nonstop",
+        "price_twd": 25272,
         "source": "Momondo"
       }
     ]
@@ -81,8 +81,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "11:57 PM",
-        "arrive": "7:27 AM+1",
+        "depart": "10:45 PM",
+        "arrive": "6:15 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -90,8 +90,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "10:42 PM",
-        "arrive": "6:12 AM+1",
+        "depart": "12:01 AM",
+        "arrive": "7:31 AM",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -99,8 +99,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "9:25 PM",
-        "arrive": "4:59 AM+1",
+        "depart": "9:29 PM",
+        "arrive": "5:03 AM+1",
         "duration": "4h 34m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -108,8 +108,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "2:01 PM",
-        "arrive": "9:41 PM",
+        "depart": "1:59 PM",
+        "arrive": "9:39 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -117,12 +117,12 @@
       },
       {
         "airline": "Delta",
-        "depart": "9:30 PM",
-        "arrive": "5:04 AM+1",
-        "duration": "4h34m",
+        "depart": "10:40 PM",
+        "arrive": "6:10 AM+1",
+        "duration": "4h 30m",
         "stops": "Nonstop",
-        "price_twd": 8361,
-        "source": "Google Flights"
+        "price_twd": 8487,
+        "source": "Momondo"
       }
     ]
   },
@@ -154,7 +154,7 @@
         "arrive": "05:00",
         "duration": "24h 56m",
         "stops": "1 stop · Seattle",
-        "price_twd": 21132,
+        "price_twd": 20592,
         "source": "Kiwi.com"
       },
       {
