@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21 10:53 TW",
+  "timestamp": "2026-06-21 11:59 TW",
   "rate": "1 USD = 31.55 TWD",
   "sources": [
     "Momondo",
@@ -81,8 +81,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "10:41 PM",
-        "arrive": "6:11 AM+1",
+        "depart": "11:54 PM",
+        "arrive": "7:24 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -90,8 +90,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "12:01 AM",
-        "arrive": "7:31 AM",
+        "depart": "10:36 PM",
+        "arrive": "6:06 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -99,8 +99,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "9:33 PM",
-        "arrive": "5:07 AM+1",
+        "depart": "9:29 PM",
+        "arrive": "5:03 AM+1",
         "duration": "4h 34m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -108,8 +108,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "1:57 PM",
-        "arrive": "9:37 PM",
+        "depart": "1:55 PM",
+        "arrive": "9:35 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -167,21 +167,21 @@
         "source": "Google Flights"
       },
       {
-        "airline": "Delta",
-        "depart": "11:30 PM",
-        "arrive": "5:50 PM+2",
-        "duration": "30h20m",
-        "stops": "1 stop",
-        "price_twd": 32591,
-        "source": "Google Flights"
-      },
-      {
         "airline": "United",
         "depart": "7:00 AM",
         "arrive": "6:45 PM+1",
         "duration": "23h45m",
         "stops": "1 stop",
         "price_twd": 34263,
+        "source": "Google Flights"
+      },
+      {
+        "airline": "Turkish Airlines",
+        "depart": "9:50 PM",
+        "arrive": "5:55 PM+2",
+        "duration": "32h5m",
+        "stops": "1 stop",
+        "price_twd": 35967,
         "source": "Google Flights"
       }
     ]
