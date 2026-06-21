@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T07:34:26.224911",
+  "timestamp": "2026-06-21 08:45 TW",
   "rate": "1 USD = 31.55 TWD",
   "leg1": {
     "route": "TPE→LAX",
@@ -29,7 +29,7 @@
         "arrive": "5:15 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -38,7 +38,7 @@
         "arrive": "9:30 PM",
         "duration": "12h 35m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       },
       {
@@ -47,7 +47,7 @@
         "arrive": "7:50 AM",
         "duration": "12h 40m",
         "stops": "Nonstop",
-        "price_twd": 25903,
+        "price_twd": 25619,
         "source": "Momondo"
       }
     ]
@@ -58,8 +58,8 @@
     "flights": [
       {
         "airline": "JetBlue",
-        "depart": "10:43 PM",
-        "arrive": "6:13 AM+1",
+        "depart": "11:57 PM",
+        "arrive": "7:27 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -67,8 +67,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "12:01 AM",
-        "arrive": "7:31 AM",
+        "depart": "10:42 PM",
+        "arrive": "6:12 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -76,8 +76,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "9:33 PM",
-        "arrive": "5:07 AM+1",
+        "depart": "9:25 PM",
+        "arrive": "4:59 AM+1",
         "duration": "4h 34m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -85,8 +85,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "1:59 PM",
-        "arrive": "9:39 PM",
+        "depart": "2:01 PM",
+        "arrive": "9:41 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8077,
