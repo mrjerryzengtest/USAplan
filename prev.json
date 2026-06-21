@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21 09:49 TW",
+  "timestamp": "2026-06-21 10:53 TW",
   "rate": "1 USD = 31.55 TWD",
   "sources": [
     "Momondo",
@@ -81,8 +81,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "10:45 PM",
-        "arrive": "6:15 AM+1",
+        "depart": "10:41 PM",
+        "arrive": "6:11 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -99,8 +99,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "9:29 PM",
-        "arrive": "5:03 AM+1",
+        "depart": "9:33 PM",
+        "arrive": "5:07 AM+1",
         "duration": "4h 34m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -108,8 +108,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "1:59 PM",
-        "arrive": "9:39 PM",
+        "depart": "1:57 PM",
+        "arrive": "9:37 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8077,
