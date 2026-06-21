@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21 16:21 TW",
+  "timestamp": "2026-06-21 18:31 TW",
   "rate": "1 USD = 31.55 TWD",
   "sources": [
     "Momondo",
@@ -81,8 +81,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "12:02 AM",
-        "arrive": "7:32 AM",
+        "depart": "11:56 PM",
+        "arrive": "7:26 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -90,8 +90,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "10:41 PM",
-        "arrive": "6:11 AM+1",
+        "depart": "10:42 PM",
+        "arrive": "6:12 AM+1",
         "duration": "4h 30m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -108,8 +108,8 @@
       },
       {
         "airline": "JetBlue",
-        "depart": "1:59 PM",
-        "arrive": "9:39 PM",
+        "depart": "1:57 PM",
+        "arrive": "9:37 PM",
         "duration": "4h 40m",
         "stops": "Nonstop",
         "price_twd": 8077,
@@ -117,12 +117,12 @@
       },
       {
         "airline": "Delta",
-        "depart": "2:00 PM",
-        "arrive": "9:40 PM",
-        "duration": "4h40m",
+        "depart": "11:59 PM",
+        "arrive": "7:29 AM+1",
+        "duration": "4h 30m",
         "stops": "Nonstop",
-        "price_twd": 8361,
-        "source": "Google Flights"
+        "price_twd": 8487,
+        "source": "Momondo"
       }
     ]
   },
@@ -154,7 +154,16 @@
         "arrive": "05:00",
         "duration": "24h 56m",
         "stops": "1 stop · Seattle",
-        "price_twd": 20592,
+        "price_twd": 20552,
+        "source": "Kiwi.com"
+      },
+      {
+        "airline": "(Kiwi)",
+        "depart": "09:03",
+        "arrive": "05:00",
+        "duration": "31h 57m",
+        "stops": "1 stop · Seattle",
+        "price_twd": 21739,
         "source": "Kiwi.com"
       },
       {
@@ -162,15 +171,6 @@
         "depart": "12:29 PM",
         "arrive": "7:55 PM+1",
         "duration": "19h26m",
-        "stops": "1 stop",
-        "price_twd": 32591,
-        "source": "Google Flights"
-      },
-      {
-        "airline": "Delta",
-        "depart": "11:30 PM",
-        "arrive": "5:50 PM+2",
-        "duration": "30h20m",
         "stops": "1 stop",
         "price_twd": 32591,
         "source": "Google Flights"
