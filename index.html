@@ -11,7 +11,6 @@
   h1 { font-size:20px; text-align:center; margin-bottom:4px; }
   .sub { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:24px; }
 
-  /* timeline connector */
   .timeline { position:relative; padding-left:28px; }
   .timeline::before { content:''; position:absolute; left:11px; top:8px; bottom:8px; width:2px; background:#334155; border-radius:1px; }
 
@@ -19,25 +18,26 @@
   .stop:last-child { margin-bottom:0; }
 
   .dot { position:absolute; left:-28px; top:4px; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; }
-  .dot.confirmed { background:#22c55e; color:#0f172a; }
-  .dot.pending { background:#64748b; color:#e2e8f0; }
+  .dot.ok { background:#22c55e; color:#0f172a; }
+  .dot.plan { background:#f59e0b; color:#0f172a; }
 
   .card { background:#1e293b; border-radius:12px; padding:16px; border:1px solid #334155; }
-  .card.confirmed { border-color:#22c55e; }
-  .card.pending { border-color:#475569; opacity:0.7; }
+  .card.ok { border-color:#22c55e; }
+  .card.plan { border-color:#f59e0b; }
 
   .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
   .route { font-size:16px; font-weight:700; }
   .route .arrow { color:#64748b; margin:0 6px; }
   .status { font-size:11px; padding:2px 8px; border-radius:10px; }
   .status-ok { background:#166534; color:#22c55e; }
-  .status-wait { background:#334155; color:#94a3b8; }
+  .status-plan { background:#422006; color:#f59e0b; }
 
   .detail-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
   .detail-label { color:#64748b; }
   .detail-val { color:#e2e8f0; text-align:right; }
 
-  .flight-badge { display:inline-block; background:#3b82f6; color:#fff; font-size:12px; font-weight:700; padding:3px 10px; border-radius:6px; margin:8px 0 4px; }
+  .airline-badge { display:inline-block; background:#1e40af; color:#93c5fd; font-size:12px; font-weight:600; padding:3px 10px; border-radius:6px; margin-bottom:4px; }
+  .flight-badge { display:inline-block; background:#3b82f6; color:#fff; font-size:13px; font-weight:700; padding:3px 10px; border-radius:6px; margin:4px 0 8px; }
 
   .ref { font-size:11px; color:#475569; margin-top:8px; font-family:monospace; }
   .ref span { color:#94a3b8; }
@@ -45,8 +45,6 @@
   .layover-box { margin-top:8px; padding:8px 12px; background:#0f172a; border-radius:8px; border-left:3px solid #f97316; }
   .layover-box .stop-label { font-size:11px; color:#f97316; font-weight:600; margin-bottom:3px; }
   .layover-box .stop-detail { font-size:12px; color:#94a3b8; }
-
-  .note { margin-top:10px; padding:8px; background:#1a2740; border-radius:6px; font-size:12px; color:#fbbf24; line-height:1.5; }
 
   .total-card { background:#1e293b; border-radius:12px; padding:16px; margin-top:14px; border:2px solid #22c55e; }
   .total-card h2 { font-size:15px; color:#22c55e; margin-bottom:10px; }
@@ -65,15 +63,16 @@
 
   <!-- ═══ TPE → LAX ═══ -->
   <div class="stop">
-    <div class="dot confirmed">✓</div>
-    <div class="card confirmed">
+    <div class="dot ok">✓</div>
+    <div class="card ok">
       <div class="card-header">
         <span class="route">台北 <span class="arrow">→</span> 洛杉磯</span>
         <span class="status status-ok">已開票</span>
       </div>
+      <div class="airline-badge">星宇航空 STARLUX</div>
+      <div class="flight-badge">JX0002</div>
       <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">8/25 00:10 → 8/24 21:45（跨日線）</span></div>
       <div class="detail-row"><span class="detail-label">時長</span><span class="detail-val">12h 35m · 直飛</span></div>
-      <div class="flight-badge">JX0002 星宇航空</div>
       <div class="detail-row"><span class="detail-label">艙等</span><span class="detail-val">Economy · 行李 2 件</span></div>
       <div class="detail-row"><span class="detail-label">航站</span><span class="detail-val">TPE T2 → LAX TB</span></div>
       <div class="ref">訂位代號 <span>EI22W4</span>　票號 <span>189-2613794829</span></div>
@@ -82,37 +81,40 @@
 
   <!-- ═══ LAX → ATL ═══ -->
   <div class="stop">
-    <div class="dot pending">···</div>
-    <div class="card pending">
+    <div class="dot plan">···</div>
+    <div class="card plan">
       <div class="card-header">
         <span class="route">洛杉磯 <span class="arrow">→</span> 亞特蘭大</span>
-        <span class="status status-wait">尚未預訂</span>
+        <span class="status status-plan">規劃中</span>
       </div>
-      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">待確認</span></div>
-      <div class="detail-row"><span class="detail-label">備註</span><span class="detail-val">另外處理</span></div>
+      <div class="airline-badge">Delta Air Lines</div>
+      <div class="flight-badge">DL 528</div>
+      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">9/1 · 11:08 → 18:45</span></div>
+      <div class="detail-row"><span class="detail-label">時長</span><span class="detail-val">7h 37m · 直飛</span></div>
     </div>
   </div>
 
   <!-- ═══ ATL → TPE ═══ -->
   <div class="stop">
-    <div class="dot confirmed">✓</div>
-    <div class="card confirmed">
+    <div class="dot ok">✓</div>
+    <div class="card ok">
       <div class="card-header">
         <span class="route">亞特蘭大 <span class="arrow">→</span> 台北</span>
         <span class="status status-ok">已開票</span>
       </div>
-      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">9/7 出發 → 9/8 抵台</span></div>
+      <div class="airline-badge">Delta Air Lines</div>
       <div class="flight-badge">DL 629</div>
-      <div class="detail-row"><span class="detail-label">ATL → SEA</span><span class="detail-val">12:29 → 14:50 · 5h 21m</span></div>
+      <div class="detail-row"><span class="detail-label">ATL → SEA</span><span class="detail-val">9/7 12:29 → 14:50 · 5h 21m</span></div>
       <div class="flight-badge">DL 69</div>
-      <div class="detail-row"><span class="detail-label">SEA → TPE</span><span class="detail-val">16:00 → 19:55 · 12h 55m</span></div>
+      <div class="detail-row"><span class="detail-label">SEA → TPE</span><span class="detail-val">9/7 16:00 → 19:55 · 12h 55m</span></div>
 
       <div class="layover-box">
         <div class="stop-label">🔄 西雅圖轉機 1h 10m</div>
         <div class="stop-detail">SEA 14:50 抵達 → 16:00 出發</div>
       </div>
 
-      <div class="detail-row" style="margin-top:6px;"><span class="detail-label">艙等</span><span class="detail-val">Economy (E)</span></div>
+      <div class="detail-row" style="margin-top:6px;"><span class="detail-label">抵達台北</span><span class="detail-val">9/8 19:55</span></div>
+      <div class="detail-row"><span class="detail-label">艙等</span><span class="detail-val">Economy (E)</span></div>
       <div class="ref">訂位代號 <span>JL9HJF</span>　票號 <span>0062444567018</span></div>
     </div>
   </div>
@@ -121,13 +123,13 @@
 
 <!-- ═══ 費用總覽 ═══ -->
 <div class="total-card">
-  <h2>💰 已購機票</h2>
-  <div class="total-row"><span>TPE → LAX · JX0002 星宇</span><span>山富旅行社</span></div>
-  <div class="total-row"><span>ATL → TPE · DL629+DL69</span><span>USD $563</span></div>
-  <div class="total-row"><span>LAX → ATL</span><span style="color:#64748b;">尚未購買</span></div>
+  <h2>💰 購票狀態</h2>
+  <div class="total-row"><span>TPE → LAX · JX0002 星宇</span><span>✅ 已開票</span></div>
+  <div class="total-row"><span>LAX → ATL · DL528 Delta</span><span style="color:#f59e0b;">規劃中</span></div>
+  <div class="total-row"><span>ATL → TPE · DL629+DL69</span><span>✅ 已開票 · $563</span></div>
 </div>
 
-<div class="ts" id="ts">最後更新：2026-07-07 · 部分航班時間待確認</div>
+<div class="ts" id="ts">最後更新：2026-07-07</div>
 
 </body>
 </html>
