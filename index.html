@@ -3,172 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>USA 2026 機票</title>
+<title>USA 2026 行程規劃</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#0f172a; color:#e2e8f0; padding:16px; min-height:100vh; }
-  h1 { font-size:20px; text-align:center; margin-bottom:6px; }
-  .sub { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:20px; }
-  
-  .leg { background:#1e293b; border-radius:12px; padding:16px; margin-bottom:14px; }
-  .leg-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
-  .leg-title { font-size:15px; font-weight:700; }
-  .leg-badge { font-size:11px; padding:2px 8px; border-radius:10px; }
-  .badge-1 { background:#3b82f6; color:#fff; }
-  .badge-2 { background:#a855f7; color:#fff; }
-  .badge-3 { background:#f97316; color:#fff; }
-  
-  .card { background:#0f172a; border-radius:8px; padding:12px; margin-bottom:8px; border:1px solid #334155; }
-  .card.best { border:2px solid #22c55e; background:#0a2e1a; }
-  .card-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
-  .airline { font-weight:700; font-size:15px; }
-  .flight-no { color:#94a3b8; font-size:12px; margin-left:4px; }
-  .times { font-size:14px; color:#cbd5e1; margin-top:4px; }
-  .meta { font-size:12px; color:#64748b; margin-top:2px; }
-  .src { font-size:10px; color:#94a3b8; background:#1e293b; padding:1px 6px; border-radius:4px; margin-left:4px; }
-  .price { font-weight:700; font-size:16px; text-align:right; }
-  .price-best { color:#22c55e; font-size:18px; }
-  .price-normal { color:#fbbf24; }
-  
-  .summary { background:#1e293b; border-radius:12px; padding:16px; margin-top:14px; border:2px solid #22c55e; }
-  .summary h2 { font-size:16px; color:#22c55e; margin-bottom:10px; }
-  .leg-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; }
-  .dot-1 { background:#3b82f6; }
-  .dot-2 { background:#a855f7; }
-  .dot-3 { background:#f97316; }
-  .summary-row { display:flex; justify-content:space-between; padding:6px 0; font-size:14px; border-bottom:1px solid #334155; }
-  .summary-row:last-child { border:none; }
-  .total { font-size:18px; font-weight:700; color:#22c55e; padding-top:8px; }
-  .arrival { color:#22c55e; font-weight:600; }
-  
-  .ts { text-align:center; color:#475569; font-size:11px; margin-top:16px; }
+
+  h1 { font-size:20px; text-align:center; margin-bottom:4px; }
+  .sub { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:24px; }
+
+  /* timeline connector */
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:11px; top:8px; bottom:8px; width:2px; background:#334155; border-radius:1px; }
+
+  .stop { position:relative; margin-bottom:20px; }
+  .stop:last-child { margin-bottom:0; }
+
+  .dot { position:absolute; left:-28px; top:4px; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; }
+  .dot.confirmed { background:#22c55e; color:#0f172a; }
+  .dot.pending { background:#64748b; color:#e2e8f0; }
+
+  .card { background:#1e293b; border-radius:12px; padding:16px; border:1px solid #334155; }
+  .card.confirmed { border-color:#22c55e; }
+  .card.pending { border-color:#475569; opacity:0.7; }
+
+  .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .route { font-size:16px; font-weight:700; }
+  .route .arrow { color:#64748b; margin:0 6px; }
+  .status { font-size:11px; padding:2px 8px; border-radius:10px; }
+  .status-ok { background:#166534; color:#22c55e; }
+  .status-wait { background:#334155; color:#94a3b8; }
+
+  .detail-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
+  .detail-label { color:#64748b; }
+  .detail-val { color:#e2e8f0; text-align:right; }
+
+  .flight-badge { display:inline-block; background:#3b82f6; color:#fff; font-size:12px; font-weight:700; padding:3px 10px; border-radius:6px; margin:8px 0 4px; }
+
+  .ref { font-size:11px; color:#475569; margin-top:8px; font-family:monospace; }
+  .ref span { color:#94a3b8; }
+
+  .layover-box { margin-top:8px; padding:8px 12px; background:#0f172a; border-radius:8px; border-left:3px solid #f97316; }
+  .layover-box .stop-label { font-size:11px; color:#f97316; font-weight:600; margin-bottom:3px; }
+  .layover-box .stop-detail { font-size:12px; color:#94a3b8; }
+
+  .note { margin-top:10px; padding:8px; background:#1a2740; border-radius:6px; font-size:12px; color:#fbbf24; line-height:1.5; }
+
+  .total-card { background:#1e293b; border-radius:12px; padding:16px; margin-top:14px; border:2px solid #22c55e; }
+  .total-card h2 { font-size:15px; color:#22c55e; margin-bottom:10px; }
+  .total-row { display:flex; justify-content:space-between; padding:5px 0; font-size:14px; border-bottom:1px solid #334155; }
+  .total-row:last-child { border:none; font-size:17px; font-weight:700; color:#22c55e; }
+
+  .ts { text-align:center; color:#475569; font-size:10px; margin-top:20px; }
 </style>
 </head>
 <body>
 
-<h1>✈️ USA 2026 來回機票</h1>
-<div class="sub">8/24 → 9/6 傍晚抵台 · Momondo / Google / Kiwi / Skyscanner · 1 USD = 31.55 TWD</div>
+<h1>🇺🇸 USA 2026 行程規劃</h1>
+<div class="sub">LA 及亞特蘭大 · 8/25 凌晨出發 → 9/8 傍晚抵台</div>
 
-<!-- ═══════════ LEG 1 ═══════════ -->
-<div class="leg">
-  <div class="leg-header">
-    <span class="leg-title">① TPE → LAX</span>
-    <span class="leg-badge badge-1">8/24 直飛</span>
-  </div>
-  
-  <div class="card best">
-    <div class="card-row">
-      <span class="airline">STARLUX <span class="flight-no">JX2</span></span>
-      <span class="price price-best">NT$16,821</span>
+<div class="timeline">
+
+  <!-- ═══ TPE → LAX ═══ -->
+  <div class="stop">
+    <div class="dot confirmed">✓</div>
+    <div class="card confirmed">
+      <div class="card-header">
+        <span class="route">台北 <span class="arrow">→</span> 洛杉磯</span>
+        <span class="status status-ok">已開票</span>
+      </div>
+      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">8/25 00:10 → 8/24 21:45（跨日線）</span></div>
+      <div class="detail-row"><span class="detail-label">時長</span><span class="detail-val">12h 35m · 直飛</span></div>
+      <div class="flight-badge">JX0002 星宇航空</div>
+      <div class="detail-row"><span class="detail-label">艙等</span><span class="detail-val">Economy · 行李 2 件</span></div>
+      <div class="detail-row"><span class="detail-label">航站</span><span class="detail-val">TPE T2 → LAX TB</span></div>
+      <div class="ref">訂位代號 <span>EI22W4</span>　票號 <span>189-2613794829</span></div>
     </div>
-    <div class="times">8/24 00:10 → <span class="arrival">8/23 21:45</span></div>
-    <div class="meta">12h 35m · 跨日線抵達 <span class="src">國際旅行社</span></div>
   </div>
-  
-  <div class="card">
-    <div class="card-row">
-      <span class="airline">STARLUX <span class="flight-no">JX2</span></span>
-      <span class="price price-normal">NT$16,899</span>
+
+  <!-- ═══ LAX → ATL ═══ -->
+  <div class="stop">
+    <div class="dot pending">···</div>
+    <div class="card pending">
+      <div class="card-header">
+        <span class="route">洛杉磯 <span class="arrow">→</span> 亞特蘭大</span>
+        <span class="status status-wait">尚未預訂</span>
+      </div>
+      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">待確認</span></div>
+      <div class="detail-row"><span class="detail-label">備註</span><span class="detail-val">另外處理</span></div>
     </div>
-    <div class="times">8/24 00:10 → 8/23 21:45</div>
-    <div class="meta">12h 35m · LINE Pay <span class="src">山富旅遊</span></div>
   </div>
+
+  <!-- ═══ ATL → TPE ═══ -->
+  <div class="stop">
+    <div class="dot confirmed">✓</div>
+    <div class="card confirmed">
+      <div class="card-header">
+        <span class="route">亞特蘭大 <span class="arrow">→</span> 台北</span>
+        <span class="status status-ok">已開票</span>
+      </div>
+      <div class="detail-row"><span class="detail-label">日期</span><span class="detail-val">9/7 出發 → 9/8 抵台</span></div>
+      <div class="flight-badge">DL 629</div>
+      <div class="detail-row"><span class="detail-label">ATL → SEA</span><span class="detail-val">12:29 → 14:50 · 5h 21m</span></div>
+      <div class="flight-badge">DL 69</div>
+      <div class="detail-row"><span class="detail-label">SEA → TPE</span><span class="detail-val">16:00 → 19:55 · 12h 55m</span></div>
+
+      <div class="layover-box">
+        <div class="stop-label">🔄 西雅圖轉機 1h 10m</div>
+        <div class="stop-detail">SEA 14:50 抵達 → 16:00 出發</div>
+      </div>
+
+      <div class="detail-row" style="margin-top:6px;"><span class="detail-label">艙等</span><span class="detail-val">Economy (E)</span></div>
+      <div class="ref">訂位代號 <span>JL9HJF</span>　票號 <span>0062444567018</span></div>
+    </div>
+  </div>
+
 </div>
 
-<!-- ═══════════ LEG 2 ═══════════ -->
-<div class="leg">
-  <div class="leg-header">
-    <span class="leg-title">② LAX → ATL</span>
-    <span class="leg-badge badge-2">9/1 直飛</span>
-  </div>
-  
-  <div class="card best">
-    <div class="card-row">
-      <span class="airline">Delta <span class="flight-no">DL528</span></span>
-      <span class="price price-best">NT$10,064</span>
-    </div>
-    <div class="times">11:08 → 18:45</div>
-    <div class="meta">7h 37m <span class="src">Skyscanner</span></div>
-  </div>
-  
-  <div class="card">
-    <div class="card-row">
-      <span class="airline">JetBlue <span class="flight-no">B6</span></span>
-      <span class="price price-normal">NT$8,077</span>
-    </div>
-    <div class="times">00:03 → 07:33</div>
-    <div class="meta">4h 30m <span class="src">Momondo</span></div>
-  </div>
-  
-  <div class="card">
-    <div class="card-row">
-      <span class="airline">JetBlue</span>
-      <span class="price price-normal">NT$8,077</span>
-    </div>
-    <div class="times">22:42 → 9/2 06:12</div>
-    <div class="meta">4h 30m · 紅眼 <span class="src">Momondo</span></div>
-  </div>
-  
-  <div class="card">
-    <div class="card-row">
-      <span class="airline">Delta</span>
-      <span class="price price-normal">NT$8,487</span>
-    </div>
-    <div class="times">23:59 → 9/2 07:29</div>
-    <div class="meta">4h 30m · 紅眼 <span class="src">Momondo</span></div>
-  </div>
+<!-- ═══ 費用總覽 ═══ -->
+<div class="total-card">
+  <h2>💰 已購機票</h2>
+  <div class="total-row"><span>TPE → LAX · JX0002 星宇</span><span>山富旅行社</span></div>
+  <div class="total-row"><span>ATL → TPE · DL629+DL69</span><span>USD $563</span></div>
+  <div class="total-row"><span>LAX → ATL</span><span style="color:#64748b;">尚未購買</span></div>
 </div>
 
-<!-- ═══════════ LEG 3 ═══════════ -->
-<div class="leg">
-  <div class="leg-header">
-    <span class="leg-title">③ ATL → TPE</span>
-    <span class="leg-badge badge-3">9/6 · 1 次轉機</span>
-  </div>
-  
-  <div class="card best">
-    <div class="card-row">
-      <span class="airline">Delta <span class="flight-no">DL629 + DL69</span></span>
-      <span class="price price-best">NT$19,618</span>
-    </div>
-    <div class="times">12:29 → <span class="arrival">9/6 19:55</span></div>
-    <div class="meta">18h 26m · 1 次轉機（SEA · 停留 1h15m） <span class="src">Google Flights</span></div>
-    <div class="layover-info" style="margin-top:8px; padding:8px; background:#1a2740; border-radius:6px; font-size:12px; line-height:1.6;">
-      <div style="color:#94a3b8;">🛫 ATL 12:29</div>
-      <div style="color:#64748b; margin-left:12px;">↓ 5h 16m</div>
-      <div style="color:#fbbf24;">🔄 SEA（西雅圖）14:45 · <b style="color:#f97316;">停留 1h 15m</b></div>
-      <div style="color:#64748b; margin-left:12px;">↓ 12h 55m</div>
-      <div style="color:#22c55e;">🛬 TPE 9/6 19:55</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ 推薦組合 ═══════════ -->
-<div class="summary">
-  <h2>🏆 推薦組合</h2>
-  <div class="summary-row">
-    <span><span class="leg-dot dot-1"></span>TPE→LAX 8/24</span>
-    <span>星宇 JX2 · NT$16,821</span>
-  </div>
-  <div class="summary-row">
-    <span><span class="leg-dot dot-2"></span>LAX→ATL 9/1</span>
-    <span>Delta DL528 · NT$10,064</span>
-  </div>
-  <div class="summary-row">
-    <span><span class="leg-dot dot-3"></span>ATL→TPE 9/6</span>
-    <span>Delta DL629+DL69 · NT$19,618</span>
-  </div>
-  <div class="summary-row total">
-    <span>合計</span>
-    <span>NT$46,503</span>
-  </div>
-  <div style="font-size:12px; color:#64748b; margin-top:6px; text-align:center;">
-    JX2 8/24 00:10 出發 → 8/23 21:45 抵達 LAX ✅<br>
-    Delta 9/6 12:29 ATL → SEA → 9/6 19:55 抵達台北 ✅
-  </div>
-</div>
-
-<div class="ts" id="ts">票價抓取時間：2026-06-26 15:15 TW</div>
+<div class="ts" id="ts">最後更新：2026-07-07 · 部分航班時間待確認</div>
 
 </body>
 </html>
