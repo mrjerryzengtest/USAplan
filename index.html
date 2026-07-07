@@ -11,27 +11,52 @@
   h1 { font-size:20px; text-align:center; margin-bottom:4px; }
   .sub { text-align:center; color:#94a3b8; font-size:13px; margin-bottom:24px; }
 
-  .section-title { font-size:14px; font-weight:700; color:#94a3b8; margin:20px 0 10px; padding-bottom:6px; border-bottom:1px solid #1e293b; }
+  .section-title { font-size:13px; font-weight:700; color:#64748b; margin:18px 0 8px; padding-left:2px; }
 
-  .day { background:#1e293b; border-radius:10px; padding:14px; margin-bottom:10px; border-left:3px solid #334155; position:relative; }
-  .day.flight { border-left-color:#3b82f6; }
-  .day.climb { border-left-color:#f97316; }
-  .day.park { border-left-color:#22c55e; }
-  .day.arrive { border-left-color:#a855f7; }
+  /* ── 行程卡片 ── */
+  .day { display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; }
+  .day-date { min-width:64px; font-size:12px; font-weight:600; color:#94a3b8; padding:8px 0; text-align:right; }
+  .day-card { flex:1; background:#1e293b; border-radius:8px; padding:10px 12px; border-left:3px solid #334155; }
+  .day-card.flight { border-left-color:#3b82f6; }
+  .day-card.climb { border-left-color:#f97316; }
+  .day-card.park { border-left-color:#22c55e; }
+  .day-card.arrive { border-left-color:#a855f7; }
+  .day-card strong { font-size:13px; }
+  .day-card .sub { font-size:11px; color:#64748b; margin-top:2px; text-align:left; }
 
-  .day-header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
-  .day-date { font-size:12px; color:#64748b; }
-  .day-label { font-size:11px; font-weight:600; padding:1px 7px; border-radius:8px; }
-  .l-flight { background:#1e3a5f; color:#93c5fd; }
-  .l-climb { background:#422006; color:#fb923c; }
-  .l-park { background:#0a2e1a; color:#4ade80; }
-  .l-city { background:#1e293b; color:#94a3b8; border:1px solid #334155; }
-  .l-arrive { background:#2e1065; color:#c084fc; }
+  /* ── 機票可折疊 ── */
+  .ticket-section { margin-top:20px; }
+  .ticket-section summary { background:#1e293b; border-radius:10px; padding:14px 16px; font-size:15px; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; }
+  .ticket-section summary .icon { font-size:13px; color:#64748b; transition:transform .2s; }
+  .ticket-section[open] summary .icon { transform:rotate(180deg); }
+  .ticket-section summary::-webkit-details-marker { display:none; }
 
-  .day-content { font-size:13px; color:#cbd5e1; line-height:1.6; }
-  .day-content .flight-info { font-size:12px; color:#93c5fd; margin-top:2px; }
+  .ticket-list { padding:10px 0 0; }
+  .ticket { background:#1e293b; border-radius:10px; padding:14px; margin-bottom:10px; border:1px solid #334155; }
+  .ticket.ok { border-color:#22c55e; }
+  .ticket.plan { border-color:#f59e0b; }
 
-  .day-note { font-size:11px; color:#64748b; margin-top:4px; font-style:italic; }
+  .ticket-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+  .ticket-header .route { font-size:14px; font-weight:700; }
+  .ticket-header .route .arrow { color:#64748b; margin:0 5px; }
+  .ticket-badge { font-size:10px; padding:2px 8px; border-radius:8px; }
+  .b-ok { background:#166534; color:#22c55e; }
+  .b-plan { background:#422006; color:#f59e0b; }
+
+  .airline-tag { display:inline-block; background:#1e40af; color:#93c5fd; font-size:11px; padding:2px 8px; border-radius:5px; margin-right:6px; }
+  .flight-tag { display:inline-block; background:#3b82f6; color:#fff; font-size:12px; font-weight:700; padding:2px 8px; border-radius:5px; margin-bottom:6px; }
+
+  .t-row { display:flex; justify-content:space-between; padding:3px 0; font-size:12px; }
+  .t-label { color:#64748b; }
+  .t-val { color:#cbd5e1; text-align:right; }
+  .t-price { color:#22c55e; font-weight:700; }
+
+  .layover { margin-top:6px; padding:6px 10px; background:#0f172a; border-radius:6px; border-left:3px solid #f97316; font-size:11px; }
+  .layover .l-title { color:#f97316; font-weight:600; }
+  .layover .l-detail { color:#94a3b8; }
+
+  .ref { font-size:10px; color:#475569; margin-top:6px; font-family:monospace; }
+  .ref span { color:#64748b; }
 
   .ts { text-align:center; color:#475569; font-size:10px; margin-top:24px; }
 </style>
@@ -41,126 +66,132 @@
 <h1>🇺🇸 USA 2026 行程規劃</h1>
 <div class="sub">LA · Mt. Whitney · 亞特蘭大 · 大煙山 · 8/24 – 9/8</div>
 
-<!-- ═══ 去程 ═══ -->
-<div class="section-title">🛫 去程</div>
+<!-- ═══════════ 每日行程 ═══════════ -->
+<div class="section-title">📅 每日行程</div>
 
-<div class="day flight">
-  <div class="day-header">
-    <strong>台北 → 洛杉磯</strong>
-    <span class="day-label l-flight">8/25 00:10</span>
-  </div>
-  <div class="day-content">
-    星宇航空 <b>JX0002</b> · 直飛 12h 35m<br>
-    <span class="flight-info">TPE T2 → LAX TB · 8/24 21:45 抵達（跨日線）</span>
-  </div>
-  <div class="day-note">Economy · 行李 2 件 · NT$16,899 · 訂位 EI22W4</div>
-</div>
-
-<!-- ═══ LA ═══ -->
-<div class="section-title">🌴 洛杉磯</div>
-
-<div class="day arrive">
-  <div class="day-header">
+<div class="day">
+  <div class="day-date">8/24-26</div>
+  <div class="day-card arrive">
     <strong>抵達 LA · 調時差</strong>
-    <span class="day-label l-arrive">8/24 – 8/26</span>
+    <div class="sub">8/24 晚抵達，住 2 晚 · 8/26 珮箏抵達會合</div>
   </div>
-  <div class="day-content">8/24 晚抵達，住 2 晚調整時差</div>
-</div>
-
-<div class="day arrive">
-  <div class="day-header">
-    <strong>珮箏抵達</strong>
-    <span class="day-label l-arrive">8/26</span>
-  </div>
-  <div class="day-content">會合，一起住 LA</div>
-</div>
-
-<!-- ═══ Mt. Whitney ═══ -->
-<div class="section-title">⛰️ Mt. Whitney</div>
-
-<div class="day climb">
-  <div class="day-header">
-    <strong>移動日</strong>
-    <span class="day-label l-climb">8/27</span>
-  </div>
-  <div class="day-content">早上搭巴士到 Mt. Whitney 山腳，住宿</div>
-</div>
-
-<div class="day climb">
-  <div class="day-header">
-    <strong>爬山</strong>
-    <span class="day-label l-climb">8/28 – 8/30</span>
-  </div>
-  <div class="day-content">Mt. Whitney 登山（3 天）</div>
-</div>
-
-<div class="day climb">
-  <div class="day-header">
-    <strong>下山休息</strong>
-    <span class="day-label l-climb">8/30</span>
-  </div>
-  <div class="day-content">住山腳下</div>
 </div>
 
 <div class="day">
-  <div class="day-header">
-    <strong>返回 LAX</strong>
-    <span class="day-label l-city">8/31</span>
+  <div class="day-date">8/27</div>
+  <div class="day-card climb">
+    <strong>前往 Mt. Whitney</strong>
+    <div class="sub">早上搭巴士到山腳，住宿</div>
   </div>
-  <div class="day-content">回機場附近住宿</div>
 </div>
-
-<!-- ═══ 轉場 ═══ -->
-<div class="section-title">🛫 轉場</div>
-
-<div class="day flight">
-  <div class="day-header">
-    <strong>洛杉磯 → 亞特蘭大</strong>
-    <span class="day-label l-flight">9/1</span>
-  </div>
-  <div class="day-content">
-    Delta <b>DL528</b> · 直飛 7h 37m<br>
-    <span class="flight-info">11:08 → 18:45</span>
-  </div>
-  <div class="day-note">規劃中</div>
-</div>
-
-<!-- ═══ 亞特蘭大 ═══ -->
-<div class="section-title">🏙️ 亞特蘭大</div>
 
 <div class="day">
-  <div class="day-header">
-    <strong>珮箏上課</strong>
-    <span class="day-label l-city">9/2 – 9/3</span>
+  <div class="day-date">8/28-30</div>
+  <div class="day-card climb">
+    <strong>Mt. Whitney 登山</strong>
+    <div class="sub">3 天 · 8/30 住山腳休息</div>
   </div>
-  <div class="day-content">亞特蘭大市區</div>
 </div>
 
-<!-- ═══ 大煙山 ═══ -->
-<div class="section-title">🏔️ 大煙山國家公園</div>
-
-<div class="day park">
-  <div class="day-header">
-    <strong>Great Smoky Mountains</strong>
-    <span class="day-label l-park">9/4 – 9/6</span>
+<div class="day">
+  <div class="day-date">8/31</div>
+  <div class="day-card">
+    <strong>返回 LA 機場</strong>
+    <div class="sub">回機場附近住宿</div>
   </div>
-  <div class="day-content">住 2 晚</div>
 </div>
 
-<!-- ═══ 回程 ═══ -->
-<div class="section-title">🛬 回程</div>
+<div class="day">
+  <div class="day-date">9/1</div>
+  <div class="day-card flight">
+    <strong>✈️ LAX → ATL</strong>
+    <div class="sub">Delta DL528</div>
+  </div>
+</div>
 
-<div class="day flight">
-  <div class="day-header">
-    <strong>亞特蘭大 → 台北</strong>
-    <span class="day-label l-flight">9/7</span>
+<div class="day">
+  <div class="day-date">9/2-3</div>
+  <div class="day-card">
+    <strong>亞特蘭大</strong>
+    <div class="sub">珮箏上課</div>
   </div>
-  <div class="day-content">
-    Delta <b>DL629</b> ATL → SEA · 12:29 → 14:50（5h 21m）<br>
-    <span style="color:#f97316;">🔄 西雅圖轉機 1h 10m</span><br>
-    Delta <b>DL69</b> SEA → TPE · 16:00 → 19:55（12h 55m）
+</div>
+
+<div class="day">
+  <div class="day-date">9/4-6</div>
+  <div class="day-card park">
+    <strong>大煙山國家公園</strong>
+    <div class="sub">Great Smoky Mountains · 住 2 晚</div>
   </div>
-  <div class="day-note">Economy (E) · <b style="color:#22c55e;">$563 USD</b> · 訂位 JL9HJF · 9/8 19:55 抵台</div>
+</div>
+
+<div class="day">
+  <div class="day-date">9/7</div>
+  <div class="day-card flight">
+    <strong>✈️ ATL → TPE</strong>
+    <div class="sub">Delta DL629+DL69 · 西雅圖轉機 · 9/8 抵台</div>
+  </div>
+</div>
+
+<!-- ═══════════ 機票資訊 ═══════════ -->
+<div class="ticket-section">
+  <details>
+    <summary>
+      ✈️ 機票資訊
+      <span class="icon">▼</span>
+    </summary>
+
+    <div class="ticket-list">
+
+      <!-- TPE → LAX -->
+      <div class="ticket ok">
+        <div class="ticket-header">
+          <span class="route">台北 <span class="arrow">→</span> 洛杉磯</span>
+          <span class="ticket-badge b-ok">已開票</span>
+        </div>
+        <span class="airline-tag">星宇航空</span>
+        <span class="flight-tag">JX0002</span>
+        <div class="t-row"><span class="t-label">日期</span><span class="t-val">8/25 00:10 → 8/24 21:45</span></div>
+        <div class="t-row"><span class="t-label">航程</span><span class="t-val">直飛 12h 35m</span></div>
+        <div class="t-row"><span class="t-label">艙等</span><span class="t-val">Economy · 行李 2 件</span></div>
+        <div class="t-row"><span class="t-label">票價</span><span class="t-val t-price">NT$16,899</span></div>
+        <div class="ref">訂位代號 <span>EI22W4</span> · 票號 <span>189-2613794829</span></div>
+      </div>
+
+      <!-- LAX → ATL -->
+      <div class="ticket plan">
+        <div class="ticket-header">
+          <span class="route">洛杉磯 <span class="arrow">→</span> 亞特蘭大</span>
+          <span class="ticket-badge b-plan">規劃中</span>
+        </div>
+        <span class="airline-tag">Delta</span>
+        <span class="flight-tag">DL528</span>
+        <div class="t-row"><span class="t-label">日期</span><span class="t-val">9/1 · 11:08 → 18:45</span></div>
+        <div class="t-row"><span class="t-label">航程</span><span class="t-val">直飛 7h 37m</span></div>
+      </div>
+
+      <!-- ATL → TPE -->
+      <div class="ticket ok">
+        <div class="ticket-header">
+          <span class="route">亞特蘭大 <span class="arrow">→</span> 台北</span>
+          <span class="ticket-badge b-ok">已開票</span>
+        </div>
+        <span class="airline-tag">Delta</span>
+        <span class="flight-tag">DL629</span>
+        <div class="t-row"><span class="t-label">ATL → SEA</span><span class="t-val">9/7 12:29 → 14:50 · 5h 21m</span></div>
+        <span class="flight-tag">DL69</span>
+        <div class="t-row"><span class="t-label">SEA → TPE</span><span class="t-val">9/7 16:00 → 19:55 · 12h 55m</span></div>
+        <div class="layover">
+          <span class="l-title">🔄 西雅圖轉機 1h 10m</span>
+          <span class="l-detail"> · 9/8 19:55 抵台</span>
+        </div>
+        <div class="t-row" style="margin-top:6px;"><span class="t-label">艙等</span><span class="t-val">Economy (E)</span></div>
+        <div class="t-row"><span class="t-label">票價</span><span class="t-val t-price">$563 USD</span></div>
+        <div class="ref">訂位代號 <span>JL9HJF</span> · 票號 <span>0062444567018</span></div>
+      </div>
+
+    </div>
+  </details>
 </div>
 
 <div class="ts" id="ts">最後更新：2026-07-07</div>
