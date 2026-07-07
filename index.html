@@ -3,247 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>USA 2026 行程規劃</title>
+<title>USA 2026 · 行程規劃</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f1f5f9; color:#1e293b; padding:20px 16px; min-height:100vh; }
+  body { font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif; background:#f8fafc; color:#1e293b; min-height:100vh; }
 
-  h1 { font-size:22px; text-align:center; margin-bottom:4px; color:#0f172a; }
-  .sub { text-align:center; color:#64748b; font-size:13px; margin-bottom:28px; }
+  /* ── Hero ── */
+  .hero { background:linear-gradient(135deg, #0f2b5c 0%, #1a3a6b 30%, #1e4d8c 60%, #c41e3a 100%); padding:40px 20px 36px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='white' opacity='0.08'/%3E%3C/svg%3E"); }
+  .hero h1 { font-size:26px; font-weight:800; color:#fff; position:relative; letter-spacing:-0.5px; }
+  .hero .route-tags { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:12px; position:relative; }
+  .hero .rtag { background:rgba(255,255,255,0.15); backdrop-filter:blur(4px); color:#fff; font-size:12px; padding:4px 12px; border-radius:20px; font-weight:500; }
+  .hero .dates { color:rgba(255,255,255,0.7); font-size:13px; margin-top:10px; position:relative; }
 
-  /* ── 行程卡片 ── */
-  .timeline { position:relative; }
-  .day { display:flex; gap:0; margin-bottom:0; position:relative; }
+  /* ── Stats bar ── */
+  .stats { display:flex; justify-content:center; gap:32px; background:#fff; padding:14px 16px; margin:-16px 16px 0; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,0.06); position:relative; z-index:1; }
+  .stat { text-align:center; }
+  .stat .num { font-size:20px; font-weight:800; color:#1e4d8c; }
+  .stat .lbl { font-size:10px; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px; }
 
-  .day-marker { width:52px; display:flex; flex-direction:column; align-items:flex-end; padding:14px 12px 0 0; position:relative; z-index:1; }
-  .day-date { font-size:18px; font-weight:800; color:#1e293b; line-height:1.2; text-align:right; }
-  .day-dow { font-size:11px; color:#94a3b8; font-weight:500; }
+  /* ── Section ── */
+  .section { padding:28px 16px 0; }
+  .section-title { font-size:13px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .section-title::after { content:''; flex:1; height:1px; background:#e2e8f0; }
 
-  .day-line { width:2px; background:#cbd5e1; flex-shrink:0; position:relative; }
-  .day-dot { position:absolute; left:-4px; top:18px; width:10px; height:10px; border-radius:50%; background:#3b82f6; border:2px solid #f1f5f9; }
-  .day-dot.arrive { background:#a855f7; }
-  .day-dot.climb { background:#f97316; }
-  .day-dot.park { background:#22c55e; }
-  .day-dot.flight { background:#3b82f6; }
-
-  .day-card { flex:1; background:#fff; border-radius:12px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
-  .day-card strong { font-size:14px; color:#0f172a; display:block; }
-  .day-card .detail { font-size:12px; color:#64748b; margin-top:3px; line-height:1.5; }
-  .day-card .tag { display:inline-block; font-size:10px; padding:1px 6px; border-radius:4px; margin-right:4px; font-weight:600; }
-  .tag-flight { background:#dbeafe; color:#2563eb; }
-  .tag-climb { background:#fff7ed; color:#ea580c; }
-  .tag-park { background:#dcfce7; color:#16a34a; }
-  .tag-city { background:#f1f5f9; color:#64748b; }
-
-  /* ── 分隔線 ── */
-  .divider { display:flex; align-items:center; margin:20px 0 16px 52px; }
-  .divider span { font-size:11px; color:#94a3b8; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding-right:10px; }
-  .divider::after { content:''; flex:1; height:1px; background:#e2e8f0; }
-
-  /* ── 機票可折疊 ── */
-  .ticket-wrap { margin:0 0 24px; }
-  .ticket-wrap summary { background:#fff; border-radius:12px; padding:14px 16px; font-size:15px; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.06); list-style:none; }
-  .ticket-wrap summary::-webkit-details-marker { display:none; }
-  .ticket-wrap summary .chevron { font-size:12px; color:#94a3b8; transition:transform .2s; }
-  .ticket-wrap[open] summary .chevron { transform:rotate(180deg); }
-
-  .ticket-list { padding:10px 0 0; }
-  .ticket { background:#fff; border-radius:12px; padding:14px 16px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,0.06); border-left:4px solid #22c55e; }
-  .ticket.plan { border-left-color:#f59e0b; }
-
-  .ticket-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
-  .ticket-header .route { font-size:14px; font-weight:700; color:#0f172a; }
-  .ticket-header .route .arrow { color:#94a3b8; margin:0 6px; }
-  .t-badge { font-size:10px; padding:2px 8px; border-radius:8px; font-weight:600; }
+  /* ── Ticket cards ── */
+  .ticket-card { background:#fff; border-radius:14px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.05); overflow:hidden; }
+  .ticket-card .t-top { display:flex; align-items:stretch; }
+  .ticket-card .t-accent { width:4px; flex-shrink:0; }
+  .t-accent.green { background:#22c55e; }
+  .t-accent.amber { background:#f59e0b; }
+  .ticket-card .t-body { flex:1; padding:14px; }
+  .ticket-card .t-route { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .ticket-card .t-city { font-size:16px; font-weight:700; }
+  .ticket-card .t-code { font-size:11px; color:#94a3b8; font-weight:500; }
+  .ticket-card .t-arrow { flex:1; height:1px; background:#e2e8f0; position:relative; min-width:30px; }
+  .ticket-card .t-arrow::after { content:'✈'; position:absolute; top:-8px; left:50%; transform:translateX(-50%); font-size:11px; }
+  .ticket-card .t-meta { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; }
+  .ticket-card .t-meta-item { color:#64748b; }
+  .ticket-card .t-meta-item b { color:#1e293b; }
+  .ticket-card .t-badge { display:inline-block; font-size:10px; padding:2px 8px; border-radius:6px; font-weight:600; margin-bottom:6px; }
   .t-badge.ok { background:#dcfce7; color:#16a34a; }
   .t-badge.plan { background:#fef3c7; color:#d97706; }
+  .ticket-card .t-price { font-weight:700; color:#16a34a; font-size:14px; }
+  .ticket-card .t-ref { font-size:10px; color:#cbd5e1; margin-top:6px; font-family:monospace; }
 
-  .airline { display:inline-block; background:#eff6ff; color:#3b82f6; font-size:11px; padding:2px 8px; border-radius:5px; margin-right:6px; }
-  .flight { display:inline-block; background:#3b82f6; color:#fff; font-size:12px; font-weight:700; padding:2px 8px; border-radius:5px; margin-bottom:6px; }
+  /* layover */
+  .layover { background:#fff7ed; border-radius:8px; padding:8px 10px; margin-top:8px; font-size:11px; border-left:3px solid #f97316; }
+  .layover .lo-title { color:#ea580c; font-weight:600; }
+  .layover .lo-detail { color:#94a3b8; }
 
-  .t-row { display:flex; justify-content:space-between; padding:3px 0; font-size:12px; }
-  .t-label { color:#94a3b8; }
-  .t-val { color:#334155; text-align:right; }
-  .t-price { color:#16a34a; font-weight:700; }
+  /* ── Timeline ── */
+  .tl { position:relative; padding-left:24px; }
+  .tl::before { content:''; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:#e2e8f0; border-radius:1px; }
+  .tl-item { position:relative; margin-bottom:16px; display:flex; gap:12px; align-items:flex-start; }
+  .tl-dot { position:absolute; left:-21px; top:6px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; color:#fff; flex-shrink:0; border:3px solid #f8fafc; }
+  .tl-dot.arrive { background:#8b5cf6; }
+  .tl-dot.climb { background:#f97316; }
+  .tl-dot.park { background:#22c55e; }
+  .tl-dot.fly { background:#3b82f6; }
+  .tl-dot.city { background:#94a3b8; }
 
-  .layover { margin-top:6px; padding:8px 10px; background:#fff7ed; border-radius:8px; font-size:11px; border-left:3px solid #f97316; }
-  .layover .l-title { color:#ea580c; font-weight:600; }
-  .layover .l-detail { color:#64748b; }
+  .tl-card { flex:1; background:#fff; border-radius:10px; padding:12px 14px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+  .tl-card .tl-title { font-size:14px; font-weight:700; }
+  .tl-card .tl-sub { font-size:11px; color:#94a3b8; margin-top:2px; }
+  .tl-card .tl-tag { display:inline-block; font-size:9px; padding:1px 6px; border-radius:4px; margin-right:4px; font-weight:600; }
+  .tl-tag.flight { background:#dbeafe; color:#2563eb; }
+  .tl-tag.park { background:#dcfce7; color:#16a34a; }
 
-  .ref { font-size:10px; color:#94a3b8; margin-top:6px; font-family:monospace; }
-  .ref span { color:#64748b; }
+  .month-div { display:flex; align-items:center; margin:12px 0 16px; padding-left:28px; }
+  .month-div span { font-size:11px; font-weight:700; color:#94a3b8; letter-spacing:1px; }
+  .month-div::after { content:''; flex:1; height:1px; background:#e2e8f0; margin-left:10px; }
 
-  .ts { text-align:center; color:#94a3b8; font-size:10px; margin-top:32px; }
+  /* ── Footer ── */
+  .footer { text-align:center; padding:32px 16px 24px; }
+  .footer .stars { color:#cbd5e1; font-size:18px; letter-spacing:4px; }
+  .footer .ts { font-size:10px; color:#94a3b8; margin-top:6px; }
+
+  @media (min-width:600px) {
+    .container { max-width:520px; margin:0 auto; }
+    .hero { padding:48px 24px 40px; }
+    .hero h1 { font-size:30px; }
+    .stats { max-width:480px; margin-left:auto; margin-right:auto; }
+    .section { max-width:520px; margin:0 auto; }
+  }
 </style>
 </head>
 <body>
 
-<h1>USA 2026 行程規劃</h1>
-<div class="sub">8/24-9/8 · LA · Mt. Whitney · 亞特蘭大 · 大煙山</div>
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero">
+  <h1>USA 2026</h1>
+  <div class="route-tags">
+    <span class="rtag">🇺🇸 LA</span>
+    <span class="rtag">⛰️ Mt. Whitney</span>
+    <span class="rtag">🏙️ 亞特蘭大</span>
+    <span class="rtag">🏔️ 大煙山</span>
+  </div>
+  <div class="dates">August 24 – September 8, 2026</div>
+</div>
 
-<!-- ═══════════ 機票資訊 ═══════════ -->
-<div class="ticket-wrap">
-  <details>
-    <summary>
-      ✈️ 機票資訊
-      <span class="chevron">▼</span>
-    </summary>
-    <div class="ticket-list">
+<!-- ═══════════ STATS ═══════════ -->
+<div class="stats">
+  <div class="stat"><div class="num">15</div><div class="lbl">天數</div></div>
+  <div class="stat"><div class="num">4</div><div class="lbl">城市/景點</div></div>
+  <div class="stat"><div class="num">3</div><div class="lbl">航班</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">已開票</div></div>
+</div>
 
-      <!-- TPE → LAX -->
-      <div class="ticket">
-        <div class="ticket-header">
-          <span class="route">台北 <span class="arrow">→</span> 洛杉磯</span>
-          <span class="t-badge ok">已開票</span>
+<!-- ═══════════ 機票 ═══════════ -->
+<div class="section">
+  <div class="section-title">✈️ Flights</div>
+
+  <div class="ticket-card">
+    <div class="t-top">
+      <div class="t-accent green"></div>
+      <div class="t-body">
+        <span class="t-badge ok">已開票</span>
+        <div class="t-route">
+          <div><div class="t-city">台北</div><div class="t-code">TPE</div></div>
+          <div class="t-arrow"></div>
+          <div><div class="t-city">洛杉磯</div><div class="t-code">LAX</div></div>
         </div>
-        <span class="airline">星宇航空</span>
-        <span class="flight">JX0002</span>
-        <div class="t-row"><span class="t-label">日期</span><span class="t-val">8/25 00:10 → 8/24 21:45</span></div>
-        <div class="t-row"><span class="t-label">航程</span><span class="t-val">直飛 12h 35m</span></div>
-        <div class="t-row"><span class="t-label">艙等</span><span class="t-val">Economy · 行李 2 件</span></div>
-        <div class="t-row"><span class="t-label">票價</span><span class="t-val t-price">NT$16,899</span></div>
-        <div class="ref">訂位代號 <span>EI22W4</span> · 票號 <span>189-2613794829</span></div>
+        <div class="t-meta">
+          <div class="t-meta-item">星宇航空 <b>JX0002</b></div>
+          <div class="t-meta-item">8/25 00:10 → 8/24 21:45</div>
+          <div class="t-meta-item">直飛 <b>12h 35m</b></div>
+        </div>
+        <div class="t-meta" style="margin-top:6px;">
+          <div class="t-meta-item">Economy · 行李×2</div>
+          <div class="t-price">NT$16,899</div>
+        </div>
+        <div class="t-ref">EI22W4 · 189-2613794829</div>
       </div>
+    </div>
+  </div>
 
-      <!-- LAX → ATL -->
-      <div class="ticket plan">
-        <div class="ticket-header">
-          <span class="route">洛杉磯 <span class="arrow">→</span> 亞特蘭大</span>
-          <span class="t-badge plan">規劃中</span>
+  <div class="ticket-card">
+    <div class="t-top">
+      <div class="t-accent amber"></div>
+      <div class="t-body">
+        <span class="t-badge plan">規劃中</span>
+        <div class="t-route">
+          <div><div class="t-city">洛杉磯</div><div class="t-code">LAX</div></div>
+          <div class="t-arrow"></div>
+          <div><div class="t-city">亞特蘭大</div><div class="t-code">ATL</div></div>
         </div>
-        <span class="airline">Delta</span>
-        <span class="flight">DL528</span>
-        <div class="t-row"><span class="t-label">日期</span><span class="t-val">9/1 · 11:08 → 18:45</span></div>
-        <div class="t-row"><span class="t-label">航程</span><span class="t-val">直飛 7h 37m</span></div>
+        <div class="t-meta">
+          <div class="t-meta-item">Delta <b>DL528</b></div>
+          <div class="t-meta-item">9/1 11:08 → 18:45</div>
+          <div class="t-meta-item">直飛 <b>7h 37m</b></div>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <!-- ATL → TPE -->
-      <div class="ticket">
-        <div class="ticket-header">
-          <span class="route">亞特蘭大 <span class="arrow">→</span> 台北</span>
-          <span class="t-badge ok">已開票</span>
+  <div class="ticket-card">
+    <div class="t-top">
+      <div class="t-accent green"></div>
+      <div class="t-body">
+        <span class="t-badge ok">已開票</span>
+        <div class="t-route">
+          <div><div class="t-city">亞特蘭大</div><div class="t-code">ATL</div></div>
+          <div class="t-arrow"></div>
+          <div><div class="t-city">台北</div><div class="t-code">TPE</div></div>
         </div>
-        <span class="airline">Delta</span>
-        <span class="flight">DL629</span>
-        <div class="t-row"><span class="t-label">ATL → SEA</span><span class="t-val">9/7 12:29 → 14:50 · 5h 21m</span></div>
-        <span class="flight">DL69</span>
-        <div class="t-row"><span class="t-label">SEA → TPE</span><span class="t-val">9/7 16:00 → 19:55 · 12h 55m</span></div>
+        <div class="t-meta">
+          <div class="t-meta-item">Delta <b>DL629</b> ATL→SEA</div>
+          <div class="t-meta-item">9/7 12:29 → 14:50 · 5h 21m</div>
+        </div>
+        <div class="t-meta" style="margin-top:2px;">
+          <div class="t-meta-item">Delta <b>DL69</b> SEA→TPE</div>
+          <div class="t-meta-item">9/7 16:00 → 19:55 · 12h 55m</div>
+        </div>
         <div class="layover">
-          <span class="l-title">🔄 西雅圖轉機 1h 10m</span>
-          <span class="l-detail">· 9/8 19:55 抵台</span>
+          <span class="lo-title">🔄 Seattle 轉機 1h 10m</span>
+          <span class="lo-detail"> · 9/8 19:55 抵達台北</span>
         </div>
-        <div class="t-row" style="margin-top:6px;"><span class="t-label">艙等</span><span class="t-val">Economy (E)</span></div>
-        <div class="t-row"><span class="t-label">票價</span><span class="t-val t-price">$563 USD</span></div>
-        <div class="ref">訂位代號 <span>JL9HJF</span> · 票號 <span>0062444567018</span></div>
+        <div class="t-meta" style="margin-top:8px;">
+          <div class="t-meta-item">Economy (E)</div>
+          <div class="t-price">$563 USD</div>
+        </div>
+        <div class="t-ref">JL9HJF · 0062444567018</div>
       </div>
-
     </div>
-  </details>
+  </div>
 </div>
 
-<div class="timeline">
+<!-- ═══════════ 行程 ═══════════ -->
+<div class="section">
+  <div class="section-title">📅 Itinerary</div>
 
-  <!-- 8/24-26 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">24｜26</div>
+  <div class="tl">
+
+    <div class="tl-item">
+      <div class="tl-dot arrive">📍</div>
+      <div class="tl-card">
+        <div class="tl-title">抵達 LA · 調時差</div>
+        <div class="tl-sub">8/24 晚抵達，住 2 晚 · 8/26 珮箏抵達會合</div>
+      </div>
     </div>
-    <div class="day-line"><div class="day-dot arrive"></div></div>
-    <div class="day-card">
-      <strong>抵達 LA · 調時差</strong>
-      <div class="detail">8/24 晚抵達，住 2 晚 · 8/26 珮箏抵達會合</div>
+
+    <div class="tl-item">
+      <div class="tl-dot climb">⛰</div>
+      <div class="tl-card">
+        <div class="tl-title">前往 Mt. Whitney</div>
+        <div class="tl-sub">早上搭巴士到山腳，住宿</div>
+      </div>
     </div>
+
+    <div class="tl-item">
+      <div class="tl-dot climb">⛰</div>
+      <div class="tl-card">
+        <div class="tl-title">Mt. Whitney 登山</div>
+        <div class="tl-sub">3 天攀登 · 8/30 住山腳休息</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot city">⬤</div>
+      <div class="tl-card">
+        <div class="tl-title">返回 LA 機場</div>
+        <div class="tl-sub">回機場附近住宿</div>
+      </div>
+    </div>
+
+    <div class="month-div"><span>SEPTEMBER</span></div>
+
+    <div class="tl-item">
+      <div class="tl-dot fly">✈</div>
+      <div class="tl-card">
+        <div class="tl-title">LAX → ATL</div>
+        <div class="tl-sub"><span class="tl-tag flight">DL528</span> Delta · 11:08 → 18:45 · 7h 37m</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot city">⬤</div>
+      <div class="tl-card">
+        <div class="tl-title">亞特蘭大</div>
+        <div class="tl-sub">珮箏上課</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot park">🏔</div>
+      <div class="tl-card">
+        <div class="tl-title">大煙山國家公園</div>
+        <div class="tl-sub"><span class="tl-tag park">Great Smoky Mountains</span> 住 2 晚</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot fly">✈</div>
+      <div class="tl-card">
+        <div class="tl-title">ATL → TPE</div>
+        <div class="tl-sub"><span class="tl-tag flight">DL629+DL69</span> Delta · 西雅圖轉機 · 9/8 19:55 抵台</div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- 8/27 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">27</div>
-    </div>
-    <div class="day-line"><div class="day-dot climb"></div></div>
-    <div class="day-card">
-      <strong>前往 Mt. Whitney</strong>
-      <div class="detail">早上搭巴士到山腳，住宿</div>
-    </div>
-  </div>
-
-  <!-- 8/28-30 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">28｜30</div>
-    </div>
-    <div class="day-line"><div class="day-dot climb"></div></div>
-    <div class="day-card">
-      <strong>Mt. Whitney 登山</strong>
-      <div class="detail">3 天 · 8/30 住山腳休息</div>
-    </div>
-  </div>
-
-  <!-- 8/31 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">31</div>
-    </div>
-    <div class="day-line"><div class="day-dot"></div></div>
-    <div class="day-card">
-      <strong>返回 LA 機場</strong>
-      <div class="detail">回機場附近住宿</div>
-    </div>
-  </div>
-
-  <div class="divider"><span>9月</span></div>
-
-  <!-- 9/1 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">1</div>
-    </div>
-    <div class="day-line"><div class="day-dot flight"></div></div>
-    <div class="day-card">
-      <strong>✈️ LAX → ATL</strong>
-      <div class="detail"><span class="tag tag-flight">DL528</span> Delta · 11:08 → 18:45 · 7h 37m</div>
-    </div>
-  </div>
-
-  <!-- 9/2-3 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">2｜3</div>
-    </div>
-    <div class="day-line"><div class="day-dot"></div></div>
-    <div class="day-card">
-      <strong>亞特蘭大</strong>
-      <div class="detail">珮箏上課</div>
-    </div>
-  </div>
-
-  <!-- 9/4-6 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">4｜6</div>
-    </div>
-    <div class="day-line"><div class="day-dot park"></div></div>
-    <div class="day-card">
-      <strong>大煙山國家公園</strong>
-      <div class="detail"><span class="tag tag-park">Great Smoky Mountains</span> 住 2 晚</div>
-    </div>
-  </div>
-
-  <!-- 9/7 -->
-  <div class="day">
-    <div class="day-marker">
-      <div class="day-date">7</div>
-    </div>
-    <div class="day-line"><div class="day-dot flight"></div></div>
-    <div class="day-card">
-      <strong>✈️ ATL → TPE</strong>
-      <div class="detail"><span class="tag tag-flight">DL629+DL69</span> Delta · 西雅圖轉機 · 9/8 19:55 抵台</div>
-    </div>
-  </div>
-
 </div>
 
-<div class="ts" id="ts">最後更新：2026-07-07</div>
+<div class="footer">
+  <div class="stars">✦ ✦ ✦</div>
+  <div class="ts">Last updated · July 7, 2026</div>
+</div>
 
 </body>
 </html>
